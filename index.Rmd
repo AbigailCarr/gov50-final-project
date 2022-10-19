@@ -1,7 +1,7 @@
 ---
 title: "Gov 50 Final Project"
-author: "Your Name Here"
-description: "My final project"
+author: "Abigail Carr"
+description: "My Final Project"
 output:
   distill::distill_article:
     self_contained: false
@@ -11,4 +11,4 @@ output:
 
 ## Project thoughts
 
-I am interested in exploring data related to...
+I am interested in exploring data related to American Indian/Native American health disparities study conducted by the Urban Indian Health Institute (UIHI), which reported that these numbers vastly underrepresented the Native American Covid-19 crisis, because a limited number of US states calculated Native American Covid-19 cases and deaths. The UIHI study refers to the CDC erasure of AI/AN Covid cases as “data genocide,” and claims it is a form of systemic oppression. Additionally, some states recorded Native American cases as “white” or “other” rather than indigenous people --- coding for missing variables and also comparing CDC data to UIHI data would serve as a way to explore Native American/American Indian Covid disaparities. 
