@@ -39,7 +39,7 @@ write.csv(count_race, 'covid_by_race.csv')
 
 ```{r}
 
-count_race %>%
+viz1 <- count_race %>%
   filter(race_ethnicity_combined != "Missing") %>%
   filter(!is.na(race_ethnicity_combined)) %>%
   mutate(fill_col = ifelse(race_ethnicity_combined == "American Indian/Alaska Native, Non-Hispanic", "A", "B")) %>%
@@ -49,6 +49,10 @@ count_race %>%
   labs(x = '', fill = '') +
   scale_fill_manual(values = c('#0000FF', '#FF0000')) +
   theme(legend.position = 'none')
+
+ggsave('viz1.png', plot = viz1)
+
+knitr::include_graphics('viz1.png')
 
 ```
 
