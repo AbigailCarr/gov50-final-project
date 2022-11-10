@@ -43,6 +43,8 @@ library(tidyverse)
 
 count_race <- read_csv('covid_by_race.csv')
 
+options(scipen = 999)
+
 viz1 <- count_race %>%
   filter(race_ethnicity_combined != "Missing") %>%
   filter(!is.na(race_ethnicity_combined)) %>%
@@ -50,7 +52,8 @@ viz1 <- count_race %>%
   ggplot(aes(x = race_ethnicity_combined, y = Count, fill = fill_col)) +
   geom_col() +
   theme(axis.text.x = element_text(angle = 70, hjust = 1)) +
-  labs(x = '', fill = '') +
+  labs(x = '', fill = '',
+       title = 'American Indian COVID Cases Compared to Other Races') +
   scale_fill_manual(values = c('#0000FF', '#FF0000')) +
   theme(legend.position = 'none')
 
