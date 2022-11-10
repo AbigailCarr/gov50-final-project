@@ -24,7 +24,7 @@ Explanatory Variable: My unit of analysis is the demographic data including AI/A
 
 Furthermore, if I observe AI/AN individuals above the age of 50 being hospitalized more often than White individuals (with mortality rates the same as White persons or lower than White persons), my hypothesis would be disproven. If I observe AI/AN individuals experiencing higher mortality rates with lower hospitalization rates, my hypothesis would be proven correct. I could potentially code for regression and see if there is a positive correlation between AI/AN hospitalization vs White hospitalization rates. 
 
-```{r}
+```{r, eval = F}
 COVID_19 <- read.csv("~/Downloads/COVID-19_Case_Surveillance_Public_Use_Data.csv")
 
 library(tidyverse)
@@ -37,7 +37,11 @@ write.csv(count_race, 'covid_by_race.csv')
 
 ```
 
-```{r, fig.height = 3}
+```{r, fig.height = 7}
+
+library(tidyverse)
+
+count_race <- read_csv('covid_by_race.csv')
 
 viz1 <- count_race %>%
   filter(race_ethnicity_combined != "Missing") %>%
