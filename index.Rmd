@@ -37,7 +37,7 @@ write.csv(count_race, 'covid_by_race.csv')
 
 ```
 
-```{r}
+```{r, fig.height = 3}
 
 viz1 <- count_race %>%
   filter(race_ethnicity_combined != "Missing") %>%
@@ -52,7 +52,5 @@ viz1 <- count_race %>%
 
 ggsave('viz1.png', plot = viz1)
 
-knitr::include_graphics('viz1.png')
-
 ```
-
+![Visualization 1](./viz1.png)
