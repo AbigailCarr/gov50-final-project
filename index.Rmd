@@ -24,40 +24,136 @@ Explanatory Variable: My unit of analysis is the demographic data including AI/A
 
 Furthermore, if I observe AI/AN individuals above the age of 50 being hospitalized more often than White individuals (with mortality rates the same as White persons or lower than White persons), my hypothesis would be disproven. If I observe AI/AN individuals experiencing higher mortality rates with lower hospitalization rates, my hypothesis would be proven correct. I could potentially code for regression and see if there is a positive correlation between AI/AN hospitalization vs White hospitalization rates. 
 
-```{r, eval = F}
-COVID_19 <- read.csv("~/Downloads/COVID-19_Case_Surveillance_Public_Use_Data.csv")
 
-library(tidyverse)
-
-count_race <- COVID_19 %>%
-  group_by(race_ethnicity_combined) %>%
-  summarize(Count = n())
-
-write.csv(count_race, 'covid_by_race.csv')
-
-```
-
-```{r, fig.height = 7}
-
-library(tidyverse)
-
-count_race <- read_csv('covid_by_race.csv')
-
-options(scipen = 999)
-
-viz1 <- count_race %>%
-  filter(race_ethnicity_combined != "Missing") %>%
-  filter(!is.na(race_ethnicity_combined)) %>%
-  mutate(fill_col = ifelse(race_ethnicity_combined == "American Indian/Alaska Native, Non-Hispanic", "A", "B")) %>%
-  ggplot(aes(x = race_ethnicity_combined, y = Count, fill = fill_col)) +
-  geom_col() +
-  theme(axis.text.x = element_text(angle = 70, hjust = 1)) +
-  labs(x = '', fill = '',
-       title = 'American Indian COVID Cases Compared to Other Races') +
-  scale_fill_manual(values = c('#0000FF', '#FF0000')) +
-  theme(legend.position = 'none')
-
-ggsave('viz1.png', plot = viz1)
-
-```
 ![Visualization 1](./viz1.png)
+```{r}
+
+library(tidyverse)
+
+covid_new <- read_csv("~/Downloads/covid_data_jan21.csv")
+
+# Separating county into two columns to get county name and state name separate
+# Grouping by county, state, and category first so that we can calculate difference
+# in daily reporting for those groups separate from one another
+# We are creating a variable for the last reported date & its cases so that we can calculate difference
+# over time
+# Difference over time is the difference in cases from the last report divided by the difference in days from
+# the last report
+
+covid_new_w_state <- covid_new |>
+  mutate(cumul_cases = `0`) |>
+  separate(col = county_names, into = c("county", "state"), sep = ', ',
+           extra = 'drop',
+           fill = 'warn') %>%
+  group_by(county, state, categories) |>
+  mutate(last_date_reported = lag(dates),
+         last_cases_reported = lag(cumul_cases)) |>
+  ungroup() |>
+  mutate(dif_days = as.numeric(dates - last_date_reported),
+         dif_cases = cumul_cases - last_cases_reported,
+         daily_change = dif_cases / dif_days) |>
+  arrange(county, state, categories) 
+
+covid_new_w_state %>%
+  filter(state == 'Arizona') %>%
+  filter(county == 'Apache County') %>%
+  ggplot() +
+  geom_line(aes(x = dates, y = dif_cases, color = categories))
+
+covid_new_w_state %>%
+  filter(state == 'Arizona') %>%
+  filter(county == 'Navajo County') %>%
+  ggplot() +
+  geom_line(aes(x = dates, y = dif_cases, color = categories))
+
+covid_new_w_state %>%
+  filter(state == 'Arizona') %>%
+  filter(county == 'Yavapai County') %>%
+  ggplot() +
+  geom_line(aes(x = dates, y = dif_cases, color = categories))
+
+```
+
+```{r}
+
+AZ_county_dems <- read_csv("~/Downloads/cc-est2021-alldata-04.csv") |>
+  filter(YEAR == 2,
+         AGEGRP == 0)
+
+unique(covid_new_w_state$categories)
+
+AZ_covid <- covid_new_w_state %>%
+  filter(state == 'Arizona')
+
+# _pc means per 100k race population
+
+AZ_covid_w_dems <- inner_join(AZ_covid, AZ_county_dems, by = c("county" = "CTYNAME")) |>
+  mutate(race_population = case_when(
+    categories == "american_indian_alaska_native"  ~ IA_MALE + IA_FEMALE,
+    categories == "asian" ~ AA_MALE + AA_FEMALE,
+    categories == "black_african_american" ~ BA_MALE + BA_FEMALE,
+    categories == "cumulative_cases" ~ TOT_POP,
+    categories == "hispanic_(all_races)" ~ H_MALE + H_FEMALE,
+    categories == "non-hispanic" ~ NH_MALE + NH_FEMALE,
+    categories == "other"  ~ TOT_POP,
+    categories == "unknown" ~ TOT_POP,
+    categories == "white" ~ WA_MALE + WA_FEMALE,
+    categories == "2+_races" ~ TOM_MALE + TOM_FEMALE,
+    categories == "native_hawaiian_pacific_islander" ~ NA_MALE + NA_FEMALE,
+    categories ==  "not_specified" ~ TOT_POP
+  )) |>
+  mutate(race = categories) |>
+  select(county, state, dates, race, cumul_cases, dif_days, dif_cases, daily_change, race_population) |>
+  mutate(cumul_cases_pc = 100000 * cumul_cases / race_population,
+         dif_cases_pc = 100000 * dif_cases / race_population,
+         daily_change_pc = 100000 * daily_change / race_population)
+```
+
+
+```{r}
+
+AZ_covid_w_dems %>%
+  filter(county == 'Apache County') |>
+  filter(race %in% c("american_indian_alaska_native", "white", "unknown")) |>
+  ggplot() +
+  geom_line(aes(x = dates, y = dif_cases_pc, color = race))
+
+AZ_covid_w_dems %>%
+  filter(county == 'Navajo County') %>%
+  filter(race %in% c("american_indian_alaska_native", "white", "unknown")) |>
+  ggplot() +
+  geom_line(aes(x = dates, y = dif_cases_pc, color = race))
+
+AZ_covid_w_dems %>%
+  filter(county == 'Yavapai County') %>%
+  filter(race %in% c("american_indian_alaska_native", "white", "unknown")) |>
+  ggplot() +
+  geom_line(aes(x = dates, y = dif_cases_pc, color = race))
+
+```
+
+```{r}
+
+# On January 3, the difference in the per capita difference in reporting for White and AI/AN individuals was:
+12.101166 - 48.339203
+
+AZ_covid_w_dems %>%
+  filter(county == 'Apache County') |>
+  filter(race %in% c("american_indian_alaska_native", "white", "unknown")) |>
+  ggplot() +
+  geom_line(aes(x = dates, y = cumul_cases_pc, color = race))
+
+AZ_covid_w_dems %>%
+  filter(county == 'Navajo County') %>%
+  filter(race %in% c("american_indian_alaska_native", "white", "unknown")) |>
+  ggplot() +
+  geom_line(aes(x = dates, y = cumul_cases_pc, color = race))
+
+AZ_covid_w_dems %>%
+  filter(county == 'Yavapai County') %>%
+  filter(race %in% c("american_indian_alaska_native", "white", "unknown")) |>
+  ggplot() +
+  geom_line(aes(x = dates, y = cumul_cases_pc, color = race))
+
+```
+
