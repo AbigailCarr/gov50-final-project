@@ -18,73 +18,6 @@
  <!--radix_placeholder_import_source-->
  <!--/radix_placeholder_import_source-->
 
-<style type="text/css">code{white-space: pre;}</style>
-<style type="text/css" data-origin="pandoc">
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  { color: #00769e; background-color: #f1f3f5; }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span { color: #00769e; } /* Normal */
-code span.al { color: #ad0000; } /* Alert */
-code span.an { color: #5e5e5e; } /* Annotation */
-code span.at { color: #657422; } /* Attribute */
-code span.bn { color: #ad0000; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #00769e; } /* ControlFlow */
-code span.ch { color: #20794d; } /* Char */
-code span.cn { color: #8f5902; } /* Constant */
-code span.co { color: #5e5e5e; } /* Comment */
-code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
-code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
-code span.dt { color: #ad0000; } /* DataType */
-code span.dv { color: #ad0000; } /* DecVal */
-code span.er { color: #ad0000; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #ad0000; } /* Float */
-code span.fu { color: #4758ab; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #5e5e5e; } /* Information */
-code span.kw { color: #00769e; } /* Keyword */
-code span.op { color: #5e5e5e; } /* Operator */
-code span.ot { color: #00769e; } /* Other */
-code span.pp { color: #ad0000; } /* Preprocessor */
-code span.sc { color: #5e5e5e; } /* SpecialChar */
-code span.ss { color: #20794d; } /* SpecialString */
-code span.st { color: #20794d; } /* String */
-code span.va { color: #111111; } /* Variable */
-code span.vs { color: #20794d; } /* VerbatimString */
-code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
-</style>
 
 
   <!--radix_placeholder_meta_tags-->
@@ -1517,810 +1450,571 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 
 <div class="d-article">
-<h2 id="project-thoughts">Project Thoughts</h2>
-<p>My Research Question
+<h2 id="introduction">Introduction</h2>
+<p>My Research Question:
 On average, do AI/AN populations have higher Covid rates in Arizona counties? Looking specifically at Navajo, Apache, and Yavapai counties (the counties which have the largest AI/AN populations) are the Covid rates higher than white people? How do the rates differ?</p>
 <p>My theory:
-I would assume that Covid rates will be higher generally for AI/AN individuals.Currently in the United States, there are 324 federally recognized American Indian reservations in the US. Interestingly, only 13% of these AI/AN people live on historic reservations. While the United States is obligated to provide federal health care to the AI/AN people, health outcomes are “adversely impacted by wholly inadequate access to comprehensive health services” (American Bar Association). The Indian Health Services is notably underfunded by Congress, characterized by significant resource constraints (National Congress for Native Americans). Currently, AI/AN people suffer from higher rates of diabetes and related illness, heart disease, and substance abuse than any other racial group in the United States (Office of Minority Health). Due to the evident health crisis among AI/AN people, I would hypothesize that Covid rates are higher for AI/AN people — either because of the health crisis and lack of resources these people generally experience, but also because of a potential failure to report the cases properly by the individual county or state governments.</p>
-<p>My Data Resources: Data sources consisted of two primary data sets: The first is Broadstreet Health Race and Ethnicity Covid Data January 2021, consisting of Covid data from January 2021 across the United States. This is organized by county/race/day — each observation is the cumulative total of these three variables. The second date set is the Census data regarding Arizona counties and the reported population estimates and Covid cases by race. This data sets presents raw estimates for each county.</p>
-<p>Dependent Variable and the Independent Variable: The key dependent variable is cumulative cases per 100k people. After joining the data sets, we divided the number of cumulative cases by the number of people in that population/racial group and multiplied by 100K. This tells us the average number of people in that group who would have cumulatively had Covid if the group consisted of 100K. Independent variables are race. This is categorical. In our regression, we include a categorical variable for county and also include a quantitative viable days since the start of 2021.</p>
-<p>repeated cross sectional</p>
-<figure>
-<img src="viz1.png" alt="Visualization 1" />
-<figcaption aria-hidden="true">Visualization 1</figcaption>
-</figure>
-<h1 id="work-for-previous-milestones">Work for Previous Milestones</h1>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span></span>
-<span></span>
-<span><span class='co'># https://github.com/BroadStreet-Health/Race-and-Ethnicity-Data</span></span>
-<span></span>
-<span><span class='va'>covid_new</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://readr.tidyverse.org/reference/read_delim.html'>read_csv</a></span><span class='op'>(</span><span class='st'>"~/Downloads/covid_data_jan21.csv"</span><span class='op'>)</span></span>
-<span></span>
-<span><span class='co'># Separating county into two columns to get county name and state name separate</span></span>
-<span><span class='co'># Grouping by county, state, and category first so that we can calculate difference</span></span>
-<span><span class='co'># in daily reporting for those groups separate from one another</span></span>
-<span><span class='co'># We are creating a variable for the last reported date &amp; its cases so that we can calculate difference</span></span>
-<span><span class='co'># over time</span></span>
-<span><span class='co'># Difference over time is the difference in cases from the last report divided by the difference in days from</span></span>
-<span><span class='co'># the last report</span></span>
-<span></span>
-<span><span class='va'>covid_new_w_state</span> <span class='op'>&lt;-</span> <span class='va'>covid_new</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>cumul_cases <span class='op'>=</span> <span class='va'>`0`</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://tidyr.tidyverse.org/reference/separate.html'>separate</a></span><span class='op'>(</span>col <span class='op'>=</span> <span class='va'>county_names</span>, into <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"county"</span>, <span class='st'>"state"</span><span class='op'>)</span>, sep <span class='op'>=</span> <span class='st'>', '</span>,</span>
-<span>           extra <span class='op'>=</span> <span class='st'>'drop'</span>,</span>
-<span>           fill <span class='op'>=</span> <span class='st'>'warn'</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>county</span>, <span class='va'>state</span>, <span class='va'>categories</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>last_date_reported <span class='op'>=</span> <span class='fu'>lag</span><span class='op'>(</span><span class='va'>dates</span><span class='op'>)</span>,</span>
-<span>         last_cases_reported <span class='op'>=</span> <span class='fu'>lag</span><span class='op'>(</span><span class='va'>cumul_cases</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>ungroup</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>dif_days <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='va'>dates</span> <span class='op'>-</span> <span class='va'>last_date_reported</span><span class='op'>)</span>,</span>
-<span>         dif_cases <span class='op'>=</span> <span class='va'>cumul_cases</span> <span class='op'>-</span> <span class='va'>last_cases_reported</span>,</span>
-<span>         daily_change <span class='op'>=</span> <span class='va'>dif_cases</span> <span class='op'>/</span> <span class='va'>dif_days</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/arrange.html'>arrange</a></span><span class='op'>(</span><span class='va'>county</span>, <span class='va'>state</span>, <span class='va'>categories</span><span class='op'>)</span> </span>
-<span></span>
-<span><span class='va'>covid_new_w_state</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>state</span> <span class='op'>==</span> <span class='st'>'Arizona'</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>county</span> <span class='op'>==</span> <span class='st'>'Apache County'</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>dates</span>, y <span class='op'>=</span> <span class='va'>dif_cases</span>, color <span class='op'>=</span> <span class='va'>categories</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
-</div>
-<img src="index_files/figure-html5/unnamed-chunk-1-1.png" width="624" />
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>covid_new_w_state</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>state</span> <span class='op'>==</span> <span class='st'>'Arizona'</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>county</span> <span class='op'>==</span> <span class='st'>'Navajo County'</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>dates</span>, y <span class='op'>=</span> <span class='va'>dif_cases</span>, color <span class='op'>=</span> <span class='va'>categories</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
-</div>
-<img src="index_files/figure-html5/unnamed-chunk-1-2.png" width="624" />
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>covid_new_w_state</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>state</span> <span class='op'>==</span> <span class='st'>'Arizona'</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>county</span> <span class='op'>==</span> <span class='st'>'Yavapai County'</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>dates</span>, y <span class='op'>=</span> <span class='va'>dif_cases</span>, color <span class='op'>=</span> <span class='va'>categories</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
-</div>
-<p><img src="index_files/figure-html5/unnamed-chunk-1-3.png" width="624" /></p>
-</div>
-<p>Cleaning the Data - not every county had a report for every single day, we wanted to find the average change over that time period. I used the lag versions of both date variable and the cumulative case variables to explain the previous report, then found the difference between the last report and the present. For example, our date is January 10 and our last reported date was Jan 5. It is a difference of 5 days, and similarly, finding perhaps a difference of 100 cases, and then calculating a daily change by dividing difference in cases and difference in days.</p>
-<p>For each of the three counties, we filtered for Arizona and plotted the differences in cases over the dates over time. It shows how prevalent Covid cases were at that time, basically on specific days how many new cases were there. Each chart shows how many new cases per day there were in each county for AI/AN individuals and other races. There are some days with negative values for unknowns, which means officials must have learned what the unknowns truly were and reclassified them into the correct categories. Looking at the three counties, in Apache county we see reclassification to AI/AN, particularly around January 7-8. We see a spike in AI/AN cases and a dip in unknown cases when these cases are reclassified. However, in Yavapai County, it appears the unclassified cases are generally white. It may be the case that in Yavapai there are more white people — it’s not necessarily indicative that the reporting error affects the races differently or if this is just population differences. Because it is uncertain whether these reclassification spikes are due to errors in reporting or just due to a county population being heavily AI/AN or white, the next step of my project looks at joining this data with census estimates in the given counties.</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'># https://www2.census.gov/programs-surveys/popest/datasets/2020-2021/counties/asrh/cc-est2021-alldata-04.csv</span></span>
-<span></span>
-<span><span class='va'>AZ_county_dems</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://readr.tidyverse.org/reference/read_delim.html'>read_csv</a></span><span class='op'>(</span><span class='st'>"~/Downloads/cc-est2021-alldata-04.csv"</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>YEAR</span> <span class='op'>==</span> <span class='fl'>2</span>,</span>
-<span>         <span class='va'>AGEGRP</span> <span class='op'>==</span> <span class='fl'>0</span><span class='op'>)</span></span>
-<span></span>
-<span><span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span><span class='op'>(</span><span class='va'>covid_new_w_state</span><span class='op'>$</span><span class='va'>categories</span><span class='op'>)</span></span></code></pre>
-</div>
-<pre><code> [1] &quot;american_indian_alaska_native&quot;   
- [2] &quot;asian&quot;                           
- [3] &quot;black_african_american&quot;          
- [4] &quot;cumulative_cases&quot;                
- [5] &quot;hispanic_(all_races)&quot;            
- [6] &quot;non-hispanic&quot;                    
- [7] &quot;other&quot;                           
- [8] &quot;unknown&quot;                         
- [9] &quot;white&quot;                           
-[10] &quot;2+_races&quot;                        
-[11] &quot;native_hawaiian_pacific_islander&quot;
-[12] &quot;not_specified&quot;                   </code></pre>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>AZ_covid</span> <span class='op'>&lt;-</span> <span class='va'>covid_new_w_state</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>state</span> <span class='op'>==</span> <span class='st'>'Arizona'</span><span class='op'>)</span></span>
-<span></span>
-<span><span class='co'># _pc means per 100k race population</span></span>
-<span></span>
-<span><span class='va'>AZ_covid_w_dems</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate-joins.html'>inner_join</a></span><span class='op'>(</span><span class='va'>AZ_covid</span>, <span class='va'>AZ_county_dems</span>, by <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"county"</span> <span class='op'>=</span> <span class='st'>"CTYNAME"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>race_population <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/case_when.html'>case_when</a></span><span class='op'>(</span></span>
-<span>    <span class='va'>categories</span> <span class='op'>==</span> <span class='st'>"american_indian_alaska_native"</span>  <span class='op'>~</span> <span class='va'>IA_MALE</span> <span class='op'>+</span> <span class='va'>IA_FEMALE</span>,</span>
-<span>    <span class='va'>categories</span> <span class='op'>==</span> <span class='st'>"asian"</span> <span class='op'>~</span> <span class='va'>AA_MALE</span> <span class='op'>+</span> <span class='va'>AA_FEMALE</span>,</span>
-<span>    <span class='va'>categories</span> <span class='op'>==</span> <span class='st'>"black_african_american"</span> <span class='op'>~</span> <span class='va'>BA_MALE</span> <span class='op'>+</span> <span class='va'>BA_FEMALE</span>,</span>
-<span>    <span class='va'>categories</span> <span class='op'>==</span> <span class='st'>"cumulative_cases"</span> <span class='op'>~</span> <span class='va'>TOT_POP</span>,</span>
-<span>    <span class='va'>categories</span> <span class='op'>==</span> <span class='st'>"hispanic_(all_races)"</span> <span class='op'>~</span> <span class='va'>H_MALE</span> <span class='op'>+</span> <span class='va'>H_FEMALE</span>,</span>
-<span>    <span class='va'>categories</span> <span class='op'>==</span> <span class='st'>"non-hispanic"</span> <span class='op'>~</span> <span class='va'>NH_MALE</span> <span class='op'>+</span> <span class='va'>NH_FEMALE</span>,</span>
-<span>    <span class='va'>categories</span> <span class='op'>==</span> <span class='st'>"other"</span>  <span class='op'>~</span> <span class='va'>TOT_POP</span>,</span>
-<span>    <span class='va'>categories</span> <span class='op'>==</span> <span class='st'>"unknown"</span> <span class='op'>~</span> <span class='va'>TOT_POP</span>,</span>
-<span>    <span class='va'>categories</span> <span class='op'>==</span> <span class='st'>"white"</span> <span class='op'>~</span> <span class='va'>WA_MALE</span> <span class='op'>+</span> <span class='va'>WA_FEMALE</span>,</span>
-<span>    <span class='va'>categories</span> <span class='op'>==</span> <span class='st'>"2+_races"</span> <span class='op'>~</span> <span class='va'>TOM_MALE</span> <span class='op'>+</span> <span class='va'>TOM_FEMALE</span>,</span>
-<span>    <span class='va'>categories</span> <span class='op'>==</span> <span class='st'>"native_hawaiian_pacific_islander"</span> <span class='op'>~</span> <span class='va'>NA_MALE</span> <span class='op'>+</span> <span class='va'>NA_FEMALE</span>,</span>
-<span>    <span class='va'>categories</span> <span class='op'>==</span>  <span class='st'>"not_specified"</span> <span class='op'>~</span> <span class='va'>TOT_POP</span></span>
-<span>  <span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>race <span class='op'>=</span> <span class='va'>categories</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>county</span>, <span class='va'>state</span>, <span class='va'>dates</span>, <span class='va'>race</span>, <span class='va'>cumul_cases</span>, <span class='va'>dif_days</span>, <span class='va'>dif_cases</span>, <span class='va'>daily_change</span>, <span class='va'>race_population</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>cumul_cases_pc <span class='op'>=</span> <span class='fl'>100000</span> <span class='op'>*</span> <span class='va'>cumul_cases</span> <span class='op'>/</span> <span class='va'>race_population</span>,</span>
-<span>         dif_cases_pc <span class='op'>=</span> <span class='fl'>100000</span> <span class='op'>*</span> <span class='va'>dif_cases</span> <span class='op'>/</span> <span class='va'>race_population</span>,</span>
-<span>         daily_change_pc <span class='op'>=</span> <span class='fl'>100000</span> <span class='op'>*</span> <span class='va'>daily_change</span> <span class='op'>/</span> <span class='va'>race_population</span><span class='op'>)</span></span></code></pre>
-</div>
-</div>
-<p>Looking at the data set, I reclassified the races to basically add male and female variables into one total for the race categories. I did not need the cases separated by gender for the purposes of my project.</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>AZ_covid_w_dems</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>county</span> <span class='op'>==</span> <span class='st'>'Apache County'</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>race</span> <span class='op'><a href='https://rdrr.io/r/base/match.html'>%in%</a></span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"american_indian_alaska_native"</span>, <span class='st'>"white"</span>, <span class='st'>"unknown"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>dates</span>, y <span class='op'>=</span> <span class='va'>dif_cases_pc</span>, color <span class='op'>=</span> <span class='va'>race</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
-</div>
-<img src="index_files/figure-html5/unnamed-chunk-3-1.png" width="624" />
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>AZ_covid_w_dems</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>county</span> <span class='op'>==</span> <span class='st'>'Navajo County'</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>race</span> <span class='op'><a href='https://rdrr.io/r/base/match.html'>%in%</a></span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"american_indian_alaska_native"</span>, <span class='st'>"white"</span>, <span class='st'>"unknown"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>dates</span>, y <span class='op'>=</span> <span class='va'>dif_cases_pc</span>, color <span class='op'>=</span> <span class='va'>race</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
-</div>
-<img src="index_files/figure-html5/unnamed-chunk-3-2.png" width="624" />
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>AZ_covid_w_dems</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>county</span> <span class='op'>==</span> <span class='st'>'Yavapai County'</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>race</span> <span class='op'><a href='https://rdrr.io/r/base/match.html'>%in%</a></span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"american_indian_alaska_native"</span>, <span class='st'>"white"</span>, <span class='st'>"unknown"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>dates</span>, y <span class='op'>=</span> <span class='va'>dif_cases_pc</span>, color <span class='op'>=</span> <span class='va'>race</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
-</div>
-<p><img src="index_files/figure-html5/unnamed-chunk-3-3.png" width="624" /></p>
-</div>
-<p>Then, I calculated the cumulative cases per 100K: this is 100K multiplied by the cumulative cases, divided by the race population estimate. The resulting plots looked at the new cases over time, but this time normalized by population. Instead of looking at just new cases, we looked at new cases per 100K. Looking at the cases per 100K allows us to see if the differences in numbers are because the races were affected differently OR if it was due to population numbers. By using 100K, we are able to look at the cases per race proportionally. Looking at the new graphs, we can make a more definitive judgment about the reporting errors.</p>
-<p>Based on Apache County, the first unknown spike is skewed directly to the AI/AN spike on January 7. It appears that AI/AN were dramatically misreported at first. The second spike around January 20 appears to be remedied; white and AI/AN cases were correctly re-reported after being classified as unknown. However, we cannot say for certain what caused these results.</p>
-<p>In Navajo country, results are more strongly affecting AI/AN cases. The unknown spikes coincide directly with that of AI/AN spikes, on January 7-8 and the 20-22. They might have been incorrectly classified at first and then reclassified as AI/AN.</p>
-<p>In Yavapai, the reclassification spikes seemed to occur weekly — maybe every week they attempted to go in every week and remedy the misclassified race whereas Navajo and Apache did so biweekly. The AI/AN cases spike when the unknown are reclassified on January 8, 13, 22, and 29.</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>AZ_covid_w_dems</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>county</span> <span class='op'>==</span> <span class='st'>'Apache County'</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>race</span> <span class='op'><a href='https://rdrr.io/r/base/match.html'>%in%</a></span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"american_indian_alaska_native"</span>, <span class='st'>"white"</span>, <span class='st'>"unknown"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>dates</span>, y <span class='op'>=</span> <span class='va'>cumul_cases_pc</span>, color <span class='op'>=</span> <span class='va'>race</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
-</div>
-<img src="index_files/figure-html5/unnamed-chunk-4-1.png" width="624" />
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>AZ_covid_w_dems</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>county</span> <span class='op'>==</span> <span class='st'>'Navajo County'</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>race</span> <span class='op'><a href='https://rdrr.io/r/base/match.html'>%in%</a></span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"american_indian_alaska_native"</span>, <span class='st'>"white"</span>, <span class='st'>"unknown"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>dates</span>, y <span class='op'>=</span> <span class='va'>cumul_cases_pc</span>, color <span class='op'>=</span> <span class='va'>race</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
-</div>
-<img src="index_files/figure-html5/unnamed-chunk-4-2.png" width="624" />
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>AZ_covid_w_dems</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>county</span> <span class='op'>==</span> <span class='st'>'Yavapai County'</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>race</span> <span class='op'><a href='https://rdrr.io/r/base/match.html'>%in%</a></span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"american_indian_alaska_native"</span>, <span class='st'>"white"</span>, <span class='st'>"unknown"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>dates</span>, y <span class='op'>=</span> <span class='va'>cumul_cases_pc</span>, color <span class='op'>=</span> <span class='va'>race</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
-</div>
-<p><img src="index_files/figure-html5/unnamed-chunk-4-3.png" width="624" /></p>
-</div>
-<p>Next, plotted the cumulative cases over time per 100K for each race in each of the three counties. In Apache, by large, there were lots of unknowns. The unknown is higher than the AI/AN and white cases by almost double, we can’t even confirm for certain whether the white and AI/AN data is reliable. However, white and AI/AN cases seem to follow similar trends in case rates.</p>
-<p>In Navajo, based on the chart above looking at Covid cases per day in January for AI/AN individuals, we know the steep increases around January 7-8 and 20-22 are most likely just reclassifications of race, not days where AI/AN people were supposedly hit harder by Covid than white populations in the county. Navajo sees fewer unknown cases than the Apache county, and a much larger disparity due to case rate overall.</p>
-<p>For Yavapai, unknown cases are lower than the two other counties and constant over time, so perhaps this county is doing an adequate job of reporting the racial cases as they are reported. The difference in AI/AN rates and white rates is not as high as Navajo county, so the disparity isn’t as great. However, looking at the slopes, the white and AI/AN slopes look different. In Navajo, it appears that the slope of the white and AI/AN over time are the same. Alternatively, Covid at this point in time in Yavapai seems to present different slopes for AI/AN and white people. AI/AN sees a much sharper slope, so maybe Covid cases in this specific county increased for AI/AN people sharply.</p>
-<h1 id="summary-plot-of-main-dependent-variable-cumulative-cases-per-100k">Summary Plot of Main Dependent Variable (Cumulative Cases Per 100K)</h1>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>AZ_covid_w_dems</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>race</span> <span class='op'>!=</span> <span class='st'>'cumulative_cases'</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>dates</span> <span class='op'>==</span> <span class='st'>'2021-01-31'</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>y <span class='op'>=</span> <span class='va'>race</span>, x <span class='op'>=</span> <span class='va'>cumul_cases_pc</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_boxplot.html'>geom_boxplot</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_minimal</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>'Cumulative Cases Per 100K at the County Level'</span>,</span>
-<span>       y <span class='op'>=</span> <span class='st'>''</span>,</span>
-<span>       title <span class='op'>=</span> <span class='st'>'Covid Cases Per 100K by Race in Arizona Counties, as of January 2021'</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_discrete.html'>scale_y_discrete</a></span><span class='op'>(</span>breaks <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'white'</span>,</span>
-<span>                              <span class='st'>'unknown'</span>,</span>
-<span>                              <span class='st'>'other'</span>,</span>
-<span>                              <span class='st'>'hispanic_(all_races)'</span>,</span>
-<span>                              <span class='st'>'black_african_american'</span>,</span>
-<span>                              <span class='st'>'asian'</span>,</span>
-<span>                              <span class='st'>'american_indian_alaska_native'</span><span class='op'>)</span>,</span>
-<span>                   labels <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'White'</span>,</span>
-<span>                              <span class='st'>'Unknown Race'</span>,</span>
-<span>                              <span class='st'>'Other'</span>,</span>
-<span>                              <span class='st'>'Hispanic'</span>,</span>
-<span>                              <span class='st'>'Black'</span>,</span>
-<span>                              <span class='st'>'Asian'</span>,</span>
-<span>                              <span class='st'>'AI/AN'</span><span class='op'>)</span></span>
-<span>                   <span class='op'>)</span></span></code></pre>
-</div>
-<p><img src="index_files/figure-html5/unnamed-chunk-5-1.png" width="624" /></p>
-</div>
-<p>Next, the summary of the main dependent variable is, at the end of January in 2021, the distribution of cumulative cases per 100K at the county level in Arizona. Each distribution in the chart shows the cumulative case rates for each county by race group. There is a much greater variance at the county level compared to white people for AI/AN. The mean level is 2500 cases higher per 100K than the white population. Because there is higher variance in AI/AN populations, I specifically picked the three counties with higher AI/AN populations.</p>
-<p>Furthermore, for the regression, I calculated the number of days for the report to the start of 2021. This put time as a number instead of a categorical variable. By making it a numerical variable, we are effectively forcing the slope to increase over time. Every additional day in 2021, how much would we expect AI/AN cases to increase? Our other two variables, race and county, are categorical.</p>
-<p>Note: For coding, since AI/AN was the baseline, I only needed to intercept and the coefficient for days. Looking at white people (since it was not the reference) I needed to look at the coefficient on white and the coefficient for days. Similarly, not Apache county but Navajo county, since Apache was my reference but Navajo was not, I had to add the Navajo county coefficient and the coefficient days. The outcomes for this work tells us the regression equation for that race in that county over time.</p>
-<p>As for the regression, we see that “racewhite” compared to AI/AN on average shows that white populations at the county level will see 3,370 less Covid cases per 100K than AI/AN people, holding the time and county constant. We are not looking across counties or from the start to the end of the month — rather, one specific county on one specific day. The p-value is 0, meaning it’s statistically significant, so we can be fairly sure that on average white populations had lower Covid rates than AI/AN populations in these three counties in Arizona.</p>
-<h1 id="multiple-regression-code">Multiple Regression Code</h1>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>### Making numerical days since start of year</span></span>
-<span></span>
-<span><span class='va'>covid_days</span> <span class='op'>&lt;-</span> <span class='va'>AZ_covid_w_dems</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>days <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='va'>dates</span> <span class='op'>-</span> <span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span><span class='op'>(</span><span class='st'>'2021-01-01'</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span></span>
-<span></span>
-<span><span class='va'>lm1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>covid_days</span>,</span>
-<span>          formula <span class='op'>=</span> <span class='va'>cumul_cases_pc</span> <span class='op'>~</span> <span class='va'>days</span> <span class='op'>+</span> <span class='va'>race</span> <span class='op'>+</span> <span class='va'>county</span><span class='op'>)</span></span></code></pre>
-</div>
-</div>
-<p>AI/AN + Apache:</p>
-<p>ccpc = 6871.837 + 53.022(days)</p>
-<p>White + Apache:</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fl'>6871.837</span> <span class='op'>-</span> <span class='fl'>3369.945</span></span></code></pre>
-</div>
-<pre><code>[1] 3501.892</code></pre>
-</div>
-<p>ccpc = 6871.837 + 53.022(days) - 3369.945 = 3369.945 + 53.022(days)</p>
-<h4 id="now-in-navajo-cty">now in navajo cty</h4>
-<p>AI/AN + navajo:</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fl'>6871.837</span> <span class='op'>-</span> <span class='fl'>1418.259</span></span></code></pre>
-</div>
-<pre><code>[1] 5453.578</code></pre>
-</div>
-<p>ccpc = 6871.837 + 53.022(days) + 1418.259 = 5453.578 + 53.022(days)</p>
-<p>White + navajo:</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fl'>6871.837</span> <span class='op'>-</span> <span class='fl'>3369.945</span> <span class='op'>+</span> <span class='fl'>1418.259</span></span></code></pre>
-</div>
-<pre><code>[1] 4920.151</code></pre>
-</div>
-<p>ccpc = 6871.837 + 53.022(days) - 3369.945 + 1418.259 = 4920.151 + 53.022(days)</p>
-<h1 id="multiple-regression-table">Multiple Regression Table</h1>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>### Regression Table</span></span>
-<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://jtools.jacob-long.com'>jtools</a></span><span class='op'>)</span></span>
-<span></span>
-<span><span class='fu'><a href='https://jtools.jacob-long.com/reference/summ.html'>summ</a></span><span class='op'>(</span><span class='va'>lm1</span><span class='op'>)</span></span></code></pre>
-</div>
-<table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<tbody>
-<tr>
-<td style="text-align:left;font-weight: bold;">
-Observations
-</td>
-<td style="text-align:right;">
-3691
-</td>
-</tr>
-<tr>
-<td style="text-align:left;font-weight: bold;">
-Dependent variable
-</td>
-<td style="text-align:right;">
-cumul_cases_pc
-</td>
-</tr>
-<tr>
-<td style="text-align:left;font-weight: bold;">
-Type
-</td>
-<td style="text-align:right;">
-OLS linear regression
-</td>
-</tr>
-</tbody>
-</table>
-<table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<tbody>
-<tr>
-<td style="text-align:left;font-weight: bold;">
-F(23,3667)
-</td>
-<td style="text-align:right;">
-443.98
-</td>
-</tr>
-<tr>
-<td style="text-align:left;font-weight: bold;">
-R²
-</td>
-<td style="text-align:right;">
-0.74
-</td>
-</tr>
-<tr>
-<td style="text-align:left;font-weight: bold;">
-Adj. R²
-</td>
-<td style="text-align:right;">
-0.73
-</td>
-</tr>
-</tbody>
-</table>
-<table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;border-bottom: 0;">
-<thead>
-<tr>
-<th style="text-align:left;">
-</th>
-<th style="text-align:right;">
-Est.
-</th>
-<th style="text-align:right;">
-S.E.
-</th>
-<th style="text-align:right;">
-t val.
-</th>
-<th style="text-align:right;">
-p
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;font-weight: bold;">
-(Intercept)
-</td>
-<td style="text-align:right;">
-6871.84
-</td>
-<td style="text-align:right;">
-169.96
-</td>
-<td style="text-align:right;">
-40.43
-</td>
-<td style="text-align:right;">
-0.00
-</td>
-</tr>
-<tr>
-<td style="text-align:left;font-weight: bold;">
-days
-</td>
-<td style="text-align:right;">
-53.02
-</td>
-<td style="text-align:right;">
-3.83
-</td>
-<td style="text-align:right;">
-13.84
-</td>
-<td style="text-align:right;">
-0.00
-</td>
-</tr>
-<tr>
-<td style="text-align:left;font-weight: bold;">
-raceasian
-</td>
-<td style="text-align:right;">
--4468.64
-</td>
-<td style="text-align:right;">
-136.94
-</td>
-<td style="text-align:right;">
--32.63
-</td>
-<td style="text-align:right;">
-0.00
-</td>
-</tr>
-<tr>
-<td style="text-align:left;font-weight: bold;">
-raceblack_african_american
-</td>
-<td style="text-align:right;">
--3116.17
-</td>
-<td style="text-align:right;">
-136.25
-</td>
-<td style="text-align:right;">
--22.87
-</td>
-<td style="text-align:right;">
-0.00
-</td>
-</tr>
-<tr>
-<td style="text-align:left;font-weight: bold;">
-racecumulative_cases
-</td>
-<td style="text-align:right;">
-2597.94
-</td>
-<td style="text-align:right;">
-137.47
-</td>
-<td style="text-align:right;">
-18.90
-</td>
-<td style="text-align:right;">
-0.00
-</td>
-</tr>
-<tr>
-<td style="text-align:left;font-weight: bold;">
-racehispanic_(all_races)
-</td>
-<td style="text-align:right;">
--217.36
-</td>
-<td style="text-align:right;">
-136.47
-</td>
-<td style="text-align:right;">
--1.59
-</td>
-<td style="text-align:right;">
-0.11
-</td>
-</tr>
-<tr>
-<td style="text-align:left;font-weight: bold;">
-racenative_hawaiian_pacific_islander
-</td>
-<td style="text-align:right;">
-75788.27
-</td>
-<td style="text-align:right;">
-2083.78
-</td>
-<td style="text-align:right;">
-36.37
-</td>
-<td style="text-align:right;">
-0.00
-</td>
-</tr>
-<tr>
-<td style="text-align:left;font-weight: bold;">
-raceother
-</td>
-<td style="text-align:right;">
--7032.17
-</td>
-<td style="text-align:right;">
-136.32
-</td>
-<td style="text-align:right;">
--51.59
-</td>
-<td style="text-align:right;">
-0.00
-</td>
-</tr>
-<tr>
-<td style="text-align:left;font-weight: bold;">
-raceunknown
-</td>
-<td style="text-align:right;">
--5074.42
-</td>
-<td style="text-align:right;">
-136.32
-</td>
-<td style="text-align:right;">
--37.22
-</td>
-<td style="text-align:right;">
-0.00
-</td>
-</tr>
-<tr>
-<td style="text-align:left;font-weight: bold;">
-racewhite
-</td>
-<td style="text-align:right;">
--3369.95
-</td>
-<td style="text-align:right;">
-136.25
-</td>
-<td style="text-align:right;">
--24.73
-</td>
-<td style="text-align:right;">
-0.00
-</td>
-</tr>
-<tr>
-<td style="text-align:left;font-weight: bold;">
-countyCochise County
-</td>
-<td style="text-align:right;">
--1251.92
-</td>
-<td style="text-align:right;">
-186.94
-</td>
-<td style="text-align:right;">
--6.70
-</td>
-<td style="text-align:right;">
-0.00
-</td>
-</tr>
-<tr>
-<td style="text-align:left;font-weight: bold;">
-countyCoconino County
-</td>
-<td style="text-align:right;">
-996.88
-</td>
-<td style="text-align:right;">
-187.13
-</td>
-<td style="text-align:right;">
-5.33
-</td>
-<td style="text-align:right;">
-0.00
-</td>
-</tr>
-<tr>
-<td style="text-align:left;font-weight: bold;">
-countyGila County
-</td>
-<td style="text-align:right;">
-221.76
-</td>
-<td style="text-align:right;">
-187.13
-</td>
-<td style="text-align:right;">
-1.19
-</td>
-<td style="text-align:right;">
-0.24
-</td>
-</tr>
-<tr>
-<td style="text-align:left;font-weight: bold;">
-countyGraham County
-</td>
-<td style="text-align:right;">
-196.02
-</td>
-<td style="text-align:right;">
-187.13
-</td>
-<td style="text-align:right;">
-1.05
-</td>
-<td style="text-align:right;">
-0.29
-</td>
-</tr>
-<tr>
-<td style="text-align:left;font-weight: bold;">
-countyGreenlee County
-</td>
-<td style="text-align:right;">
--3261.18
-</td>
-<td style="text-align:right;">
-188.74
-</td>
-<td style="text-align:right;">
--17.28
-</td>
-<td style="text-align:right;">
-0.00
-</td>
-</tr>
-<tr>
-<td style="text-align:left;font-weight: bold;">
-countyLa Paz County
-</td>
-<td style="text-align:right;">
-826.53
-</td>
-<td style="text-align:right;">
-186.94
-</td>
-<td style="text-align:right;">
-4.42
-</td>
-<td style="text-align:right;">
-0.00
-</td>
-</tr>
-<tr>
-<td style="text-align:left;font-weight: bold;">
-countyMaricopa County
-</td>
-<td style="text-align:right;">
--2.87
-</td>
-<td style="text-align:right;">
-187.13
-</td>
-<td style="text-align:right;">
--0.02
-</td>
-<td style="text-align:right;">
-0.99
-</td>
-</tr>
-<tr>
-<td style="text-align:left;font-weight: bold;">
-countyMohave County
-</td>
-<td style="text-align:right;">
--733.78
-</td>
-<td style="text-align:right;">
-186.94
-</td>
-<td style="text-align:right;">
--3.93
-</td>
-<td style="text-align:right;">
-0.00
-</td>
-</tr>
-<tr>
-<td style="text-align:left;font-weight: bold;">
-countyNavajo County
-</td>
-<td style="text-align:right;">
-1418.26
-</td>
-<td style="text-align:right;">
-186.94
-</td>
-<td style="text-align:right;">
-7.59
-</td>
-<td style="text-align:right;">
-0.00
-</td>
-</tr>
-<tr>
-<td style="text-align:left;font-weight: bold;">
-countyPima County
-</td>
-<td style="text-align:right;">
--666.75
-</td>
-<td style="text-align:right;">
-187.32
-</td>
-<td style="text-align:right;">
--3.56
-</td>
-<td style="text-align:right;">
-0.00
-</td>
-</tr>
-<tr>
-<td style="text-align:left;font-weight: bold;">
-countyPinal County
-</td>
-<td style="text-align:right;">
--436.00
-</td>
-<td style="text-align:right;">
-186.94
-</td>
-<td style="text-align:right;">
--2.33
-</td>
-<td style="text-align:right;">
-0.02
-</td>
-</tr>
-<tr>
-<td style="text-align:left;font-weight: bold;">
-countySanta Cruz County
-</td>
-<td style="text-align:right;">
--858.09
-</td>
-<td style="text-align:right;">
-186.94
-</td>
-<td style="text-align:right;">
--4.59
-</td>
-<td style="text-align:right;">
-0.00
-</td>
-</tr>
-<tr>
-<td style="text-align:left;font-weight: bold;">
-countyYavapai County
-</td>
-<td style="text-align:right;">
--1508.88
-</td>
-<td style="text-align:right;">
-186.94
-</td>
-<td style="text-align:right;">
--8.07
-</td>
-<td style="text-align:right;">
-0.00
-</td>
-</tr>
-<tr>
-<td style="text-align:left;font-weight: bold;">
-countyYuma County
-</td>
-<td style="text-align:right;">
-1521.49
-</td>
-<td style="text-align:right;">
-186.94
-</td>
-<td style="text-align:right;">
-8.14
-</td>
-<td style="text-align:right;">
-0.00
-</td>
-</tr>
-</tbody>
-<tfoot>
-<tr>
-<td style="padding: 0; " colspan="100%">
-<sup></sup> Standard errors: OLS
-</td>
-</tr>
-</tfoot>
-</table>
-</div>
-<h1 id="plots-showing-main-relationships-of-interest">Plots Showing Main Relationships of Interest</h1>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>### Line Graphs of Cases by Race over time in Navajo, Apache, and Yavapai Counties</span></span>
-<span></span>
-<span></span>
-<span><span class='va'>AZ_covid_w_dems</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>county</span> <span class='op'>==</span> <span class='st'>'Apache County'</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>race</span> <span class='op'><a href='https://rdrr.io/r/base/match.html'>%in%</a></span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"american_indian_alaska_native"</span>, <span class='st'>"white"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>dates</span>, y <span class='op'>=</span> <span class='va'>cumul_cases_pc</span>, color <span class='op'>=</span> <span class='va'>race</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_minimal</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>y <span class='op'>=</span> <span class='st'>'Cumulative Cases Per 100K'</span>,</span>
-<span>       title <span class='op'>=</span> <span class='st'>'AI/AN See Similar Covid Rates in Apache County, AZ'</span>,</span>
-<span>       color <span class='op'>=</span> <span class='st'>'Race'</span>,</span>
-<span>       x <span class='op'>=</span> <span class='st'>''</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_colour_discrete.html'>scale_color_discrete</a></span><span class='op'>(</span>labels<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'AI/AN'</span>, <span class='st'>'White'</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
-</div>
-<img src="index_files/figure-html5/unnamed-chunk-11-1.png" width="624" />
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>AZ_covid_w_dems</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>county</span> <span class='op'>==</span> <span class='st'>'Navajo County'</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>race</span> <span class='op'><a href='https://rdrr.io/r/base/match.html'>%in%</a></span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"american_indian_alaska_native"</span>, <span class='st'>"white"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>dates</span>, y <span class='op'>=</span> <span class='va'>cumul_cases_pc</span>, color <span class='op'>=</span> <span class='va'>race</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_minimal</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>y <span class='op'>=</span> <span class='st'>'Cumulative Cases Per 100K'</span>,</span>
-<span>       title <span class='op'>=</span> <span class='st'>'AI/AN See Higher Covid Rates in Navajo County, AZ'</span>,</span>
-<span>       color <span class='op'>=</span> <span class='st'>'Race'</span>,</span>
-<span>       x <span class='op'>=</span> <span class='st'>''</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_colour_discrete.html'>scale_color_discrete</a></span><span class='op'>(</span>labels<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'AI/AN'</span>, <span class='st'>'White'</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
-</div>
-<img src="index_files/figure-html5/unnamed-chunk-11-2.png" width="624" />
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>AZ_covid_w_dems</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>county</span> <span class='op'>==</span> <span class='st'>'Yavapai County'</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>race</span> <span class='op'><a href='https://rdrr.io/r/base/match.html'>%in%</a></span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"american_indian_alaska_native"</span>, <span class='st'>"white"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>dates</span>, y <span class='op'>=</span> <span class='va'>cumul_cases_pc</span>, color <span class='op'>=</span> <span class='va'>race</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_minimal</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>y <span class='op'>=</span> <span class='st'>'Cumulative Cases Per 100K'</span>,</span>
-<span>       title <span class='op'>=</span> <span class='st'>'AI/AN See Higher Covid Rates in Yavapai County, AZ'</span>,</span>
-<span>       color <span class='op'>=</span> <span class='st'>'Race'</span>,</span>
-<span>       x <span class='op'>=</span> <span class='st'>''</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_colour_discrete.html'>scale_color_discrete</a></span><span class='op'>(</span>labels<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'AI/AN'</span>, <span class='st'>'White'</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
-</div>
-<p><img src="index_files/figure-html5/unnamed-chunk-11-3.png" width="624" /></p>
-</div>
-<p>The final three charts are effectively “zooming in” and polished versions of early milestone work. These are the result of my work, showing the relationship of interest between white and AI/AN cases in the specific counties per day.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+I would assume that Covid rates will be higher generally for AI/AN individuals. Currently in the United States, there are 324 federally recognized American Indian reservations in the US. Interestingly, only 13% of these AI/AN people live on historic reservations. While the United States is obligated to provide federal health care to the AI/AN people, health outcomes are “adversely impacted by wholly inadequate access to comprehensive health services” (American Bar Association). The Indian Health Services is notably underfunded by Congress, characterized by significant resource constraints (National Congress for Native Americans). Currently, AI/AN people suffer from higher rates of diabetes and related illness, heart disease, and substance abuse than any other racial group in the United States (Office of Minority Health). Due to the evident health crisis among AI/AN people, I would hypothesize that Covid rates are higher for AI/AN people — either because of the health crisis and lack of resources these people generally experience, but also because of a potential failure to report the cases properly by the individual county or state governments. However, since the population of AI/An people in these counties is significantly less than white populations, I want to make sure the sampling proportions are correct in the final presentation of the data.</p>
+<p>My Data Resources:
+Data sources consisted of two primary data sets: The first is Broadstreet Health Race and Ethnicity Covid Data January 2021, consisting of Covid data from January 2021 across the United States. This is organized by county/race/day — each observation is the cumulative total of these three variables. The second date set is the Census data regarding Arizona counties and the reported population estimates and Covid cases by race. This data sets presents raw estimates for each county.</p>
+<p>Dependent Variable and the Independent Variable:
+The key dependent variable is cumulative cases per 100k people. After joining the data sets, we divided the number of cumulative cases by the number of people in that population/racial group and multiplied by 100K. This tells us the average number of people in that group who would have cumulatively had Covid if the group consisted of 100K. Independent variables are race and county. These are categorical. In our regression, we include a categorical variable for county and also include a quantitative viable days since the start of 2021.</p>
+<p>Further Explanation of Variables: I chose to use days as my independent variable because we know that over time, the cumulative number of cases will increase (or at least not decrease) by definition. Including days as a variables helps to control for natural increases in Covid cases over time. I chose to use county as a dependent variable because it allows us to look at specific communities of interest: AI/AN populations. The three counties chosen, Yavapai, Navajo, and Apache all have high AI/AN population density. These three counties have varying levels of access to hospitals and medical care. For example, Yavapai County contains the Yavapai-Apache reservation, which has a Long Term Care System for AI/AN elderly, whereas the Navajo County contains Navajo Nation, which experiences “chronically underfunded” federal health centers (Voices in Bioethics). This choice was more qualitatively motivated — looking at how counties with comparably high AI/AN populations and poor health infrastructure compared was of relevance to my project goal: how do white Covid rates compare to their AI/AN neighbors in these Arizona counties?</p>
+<p>This study is a repeated cross sectional study. Covid data should be administrative and is supposed to account for the whole population so it’s difficult to specify whether this study is longitudinal or cross sectional, because this study did not utilize a sample population.</p>
+<pre><code>
+A Look at the Data
+When I began my research, I realized that not every county had a report for every single day. I identified that I wanted to find the average change over the month of January. I used the lag versions of both date variable and the cumulative case variables to explain the previous report, then found the difference between the last report and the present. For example, if the date is January 10 and the last reported date was Jan 5. then it is a difference of 5 days. Similarly, if there is a difference of 100 cases then I couyld calculate the daily change by dividing difference in cases and difference in days.
+
+For each of the three counties, I filtered for Arizona and plotted the differences in cases over the dates over time. It shows how prevalent Covid cases were at that time, basically on specific days how many new cases were there. Each chart shows how many new cases per day there were in each county for AI/AN individuals and other races. There are some days with negative values for unknowns, which means officials must have learned what the unknowns truly were and reclassified them into the correct categories. Looking at the three counties, in Apache county we see reclassification to AI/AN, particularly around January 7-8. We see a spike in AI/AN cases and a dip in unknown cases when these cases are reclassified. However, in Yavapai County, it appears the unclassified cases are generally white. It may be the case that in Yavapai there are more white people — it’s not necessarily indicative that the reporting error affects the races differently or if this is just population differences. Because it is uncertain whether these reclassification spikes are due to errors in reporting or just due to a county population being heavily AI/AN or white, the next step of my project looks at joining this data with census estimates in the given counties. 
+
+# Background
+
+&lt;div class=&quot;layout-chunk&quot; data-layout=&quot;l-body&quot;&gt;
+&lt;div class=&quot;sourceCode&quot;&gt;&lt;pre class=&quot;sourceCode r&quot;&gt;&lt;code class=&quot;sourceCode r&quot;&gt;&lt;span&gt;&lt;span class=&#39;kw&#39;&gt;&lt;a href=&#39;https://rdrr.io/r/base/library.html&#39;&gt;library&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;va&#39;&gt;&lt;a href=&#39;https://tidyverse.tidyverse.org&#39;&gt;tidyverse&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;&lt;/span&gt;
+&lt;span&gt;&lt;span class=&#39;co&#39;&gt;# https://github.com/BroadStreet-Health/Race-and-Ethnicity-Data&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;&lt;/span&gt;
+&lt;span&gt;&lt;span class=&#39;va&#39;&gt;covid_new&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;&amp;lt;-&lt;/span&gt; &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://readr.tidyverse.org/reference/read_delim.html&#39;&gt;read_csv&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;st&#39;&gt;&quot;~/Downloads/covid_data_jan21.csv&quot;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;&lt;/span&gt;
+&lt;span&gt;&lt;span class=&#39;co&#39;&gt;# Separating county into two columns to get county name and state name separate&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;&lt;span class=&#39;co&#39;&gt;# Grouping by county, state, and category first so that we can calculate difference&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;&lt;span class=&#39;co&#39;&gt;# in daily reporting for those groups separate from one another&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;&lt;span class=&#39;co&#39;&gt;# We are creating a variable for the last reported date &amp;amp; its cases so that we can calculate difference&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;&lt;span class=&#39;co&#39;&gt;# over time&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;&lt;span class=&#39;co&#39;&gt;# Difference over time is the difference in cases from the last report divided by the difference in days from&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;&lt;span class=&#39;co&#39;&gt;# the last report&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;&lt;/span&gt;
+&lt;span&gt;&lt;span class=&#39;va&#39;&gt;covid_new_w_state&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;&amp;lt;-&lt;/span&gt; &lt;span class=&#39;va&#39;&gt;covid_new&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;|&amp;gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;  &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://dplyr.tidyverse.org/reference/mutate.html&#39;&gt;mutate&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;cumul_cases &lt;span class=&#39;op&#39;&gt;=&lt;/span&gt; &lt;span class=&#39;va&#39;&gt;`0`&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;|&amp;gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;  &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://tidyr.tidyverse.org/reference/separate.html&#39;&gt;separate&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;col &lt;span class=&#39;op&#39;&gt;=&lt;/span&gt; &lt;span class=&#39;va&#39;&gt;county_names&lt;/span&gt;, into &lt;span class=&#39;op&#39;&gt;=&lt;/span&gt; &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://rdrr.io/r/base/c.html&#39;&gt;c&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;st&#39;&gt;&quot;county&quot;&lt;/span&gt;, &lt;span class=&#39;st&#39;&gt;&quot;state&quot;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt;, sep &lt;span class=&#39;op&#39;&gt;=&lt;/span&gt; &lt;span class=&#39;st&#39;&gt;&#39;, &#39;&lt;/span&gt;,&lt;/span&gt;
+&lt;span&gt;           extra &lt;span class=&#39;op&#39;&gt;=&lt;/span&gt; &lt;span class=&#39;st&#39;&gt;&#39;drop&#39;&lt;/span&gt;,&lt;/span&gt;
+&lt;span&gt;           fill &lt;span class=&#39;op&#39;&gt;=&lt;/span&gt; &lt;span class=&#39;st&#39;&gt;&#39;warn&#39;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;&lt;a href=&#39;https://magrittr.tidyverse.org/reference/pipe.html&#39;&gt;%&amp;gt;%&lt;/a&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;  &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://dplyr.tidyverse.org/reference/group_by.html&#39;&gt;group_by&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;va&#39;&gt;county&lt;/span&gt;, &lt;span class=&#39;va&#39;&gt;state&lt;/span&gt;, &lt;span class=&#39;va&#39;&gt;categories&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;|&amp;gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;  &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://dplyr.tidyverse.org/reference/mutate.html&#39;&gt;mutate&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;last_date_reported &lt;span class=&#39;op&#39;&gt;=&lt;/span&gt; &lt;span class=&#39;fu&#39;&gt;lag&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;va&#39;&gt;dates&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt;,&lt;/span&gt;
+&lt;span&gt;         last_cases_reported &lt;span class=&#39;op&#39;&gt;=&lt;/span&gt; &lt;span class=&#39;fu&#39;&gt;lag&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;va&#39;&gt;cumul_cases&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;|&amp;gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;  &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://dplyr.tidyverse.org/reference/group_by.html&#39;&gt;ungroup&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;|&amp;gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;  &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://dplyr.tidyverse.org/reference/mutate.html&#39;&gt;mutate&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;dif_days &lt;span class=&#39;op&#39;&gt;=&lt;/span&gt; &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://rdrr.io/r/base/numeric.html&#39;&gt;as.numeric&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;va&#39;&gt;dates&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;-&lt;/span&gt; &lt;span class=&#39;va&#39;&gt;last_date_reported&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt;,&lt;/span&gt;
+&lt;span&gt;         dif_cases &lt;span class=&#39;op&#39;&gt;=&lt;/span&gt; &lt;span class=&#39;va&#39;&gt;cumul_cases&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;-&lt;/span&gt; &lt;span class=&#39;va&#39;&gt;last_cases_reported&lt;/span&gt;,&lt;/span&gt;
+&lt;span&gt;         daily_change &lt;span class=&#39;op&#39;&gt;=&lt;/span&gt; &lt;span class=&#39;va&#39;&gt;dif_cases&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;/&lt;/span&gt; &lt;span class=&#39;va&#39;&gt;dif_days&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;|&amp;gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;  &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://dplyr.tidyverse.org/reference/arrange.html&#39;&gt;arrange&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;va&#39;&gt;county&lt;/span&gt;, &lt;span class=&#39;va&#39;&gt;state&lt;/span&gt;, &lt;span class=&#39;va&#39;&gt;categories&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt; &lt;/span&gt;
+&lt;span&gt;&lt;/span&gt;
+&lt;span&gt;&lt;span class=&#39;va&#39;&gt;covid_new_w_state&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;&lt;a href=&#39;https://magrittr.tidyverse.org/reference/pipe.html&#39;&gt;%&amp;gt;%&lt;/a&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;  &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://dplyr.tidyverse.org/reference/filter.html&#39;&gt;filter&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;va&#39;&gt;state&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;==&lt;/span&gt; &lt;span class=&#39;st&#39;&gt;&#39;Arizona&#39;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;&lt;a href=&#39;https://magrittr.tidyverse.org/reference/pipe.html&#39;&gt;%&amp;gt;%&lt;/a&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;  &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://dplyr.tidyverse.org/reference/filter.html&#39;&gt;filter&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;va&#39;&gt;county&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;==&lt;/span&gt; &lt;span class=&#39;st&#39;&gt;&#39;Apache County&#39;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;&lt;a href=&#39;https://magrittr.tidyverse.org/reference/pipe.html&#39;&gt;%&amp;gt;%&lt;/a&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;  &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://ggplot2.tidyverse.org/reference/ggplot.html&#39;&gt;ggplot&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;+&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;  &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://ggplot2.tidyverse.org/reference/geom_path.html&#39;&gt;geom_line&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://ggplot2.tidyverse.org/reference/aes.html&#39;&gt;aes&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;x &lt;span class=&#39;op&#39;&gt;=&lt;/span&gt; &lt;span class=&#39;va&#39;&gt;dates&lt;/span&gt;, y &lt;span class=&#39;op&#39;&gt;=&lt;/span&gt; &lt;span class=&#39;va&#39;&gt;dif_cases&lt;/span&gt;, color &lt;span class=&#39;op&#39;&gt;=&lt;/span&gt; &lt;span class=&#39;va&#39;&gt;categories&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;img src=&quot;index_files/figure-html5/unnamed-chunk-1-1.png&quot; width=&quot;624&quot; /&gt;&lt;div class=&quot;sourceCode&quot;&gt;&lt;pre class=&quot;sourceCode r&quot;&gt;&lt;code class=&quot;sourceCode r&quot;&gt;&lt;span&gt;  &lt;span class=&#39;va&#39;&gt;covid_new_w_state&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;&lt;a href=&#39;https://magrittr.tidyverse.org/reference/pipe.html&#39;&gt;%&amp;gt;%&lt;/a&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;  &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://dplyr.tidyverse.org/reference/filter.html&#39;&gt;filter&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;va&#39;&gt;state&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;==&lt;/span&gt; &lt;span class=&#39;st&#39;&gt;&#39;Arizona&#39;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;&lt;a href=&#39;https://magrittr.tidyverse.org/reference/pipe.html&#39;&gt;%&amp;gt;%&lt;/a&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;  &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://dplyr.tidyverse.org/reference/filter.html&#39;&gt;filter&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;va&#39;&gt;county&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;==&lt;/span&gt; &lt;span class=&#39;st&#39;&gt;&#39;Navajo County&#39;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;&lt;a href=&#39;https://magrittr.tidyverse.org/reference/pipe.html&#39;&gt;%&amp;gt;%&lt;/a&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;  &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://ggplot2.tidyverse.org/reference/ggplot.html&#39;&gt;ggplot&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;+&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;  &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://ggplot2.tidyverse.org/reference/geom_path.html&#39;&gt;geom_line&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://ggplot2.tidyverse.org/reference/aes.html&#39;&gt;aes&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;x &lt;span class=&#39;op&#39;&gt;=&lt;/span&gt; &lt;span class=&#39;va&#39;&gt;dates&lt;/span&gt;, y &lt;span class=&#39;op&#39;&gt;=&lt;/span&gt; &lt;span class=&#39;va&#39;&gt;dif_cases&lt;/span&gt;, color &lt;span class=&#39;op&#39;&gt;=&lt;/span&gt; &lt;span class=&#39;va&#39;&gt;categories&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;img src=&quot;index_files/figure-html5/unnamed-chunk-1-2.png&quot; width=&quot;624&quot; /&gt;&lt;div class=&quot;sourceCode&quot;&gt;&lt;pre class=&quot;sourceCode r&quot;&gt;&lt;code class=&quot;sourceCode r&quot;&gt;&lt;span&gt;  &lt;span class=&#39;va&#39;&gt;covid_new_w_state&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;&lt;a href=&#39;https://magrittr.tidyverse.org/reference/pipe.html&#39;&gt;%&amp;gt;%&lt;/a&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;  &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://dplyr.tidyverse.org/reference/filter.html&#39;&gt;filter&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;va&#39;&gt;state&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;==&lt;/span&gt; &lt;span class=&#39;st&#39;&gt;&#39;Arizona&#39;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;&lt;a href=&#39;https://magrittr.tidyverse.org/reference/pipe.html&#39;&gt;%&amp;gt;%&lt;/a&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;  &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://dplyr.tidyverse.org/reference/filter.html&#39;&gt;filter&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;va&#39;&gt;county&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;==&lt;/span&gt; &lt;span class=&#39;st&#39;&gt;&#39;Yavapai County&#39;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;&lt;a href=&#39;https://magrittr.tidyverse.org/reference/pipe.html&#39;&gt;%&amp;gt;%&lt;/a&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;  &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://ggplot2.tidyverse.org/reference/ggplot.html&#39;&gt;ggplot&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;+&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;  &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://ggplot2.tidyverse.org/reference/geom_path.html&#39;&gt;geom_line&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://ggplot2.tidyverse.org/reference/aes.html&#39;&gt;aes&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;x &lt;span class=&#39;op&#39;&gt;=&lt;/span&gt; &lt;span class=&#39;va&#39;&gt;dates&lt;/span&gt;, y &lt;span class=&#39;op&#39;&gt;=&lt;/span&gt; &lt;span class=&#39;va&#39;&gt;dif_cases&lt;/span&gt;, color &lt;span class=&#39;op&#39;&gt;=&lt;/span&gt; &lt;span class=&#39;va&#39;&gt;categories&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;img src=&quot;index_files/figure-html5/unnamed-chunk-1-3.png&quot; width=&quot;624&quot; /&gt;
+
+&lt;/div&gt;
+
+
+
+# Cleaning Data
+
+&lt;div class=&quot;layout-chunk&quot; data-layout=&quot;l-body&quot;&gt;
+&lt;div class=&quot;sourceCode&quot;&gt;&lt;pre class=&quot;sourceCode r&quot;&gt;&lt;code class=&quot;sourceCode r&quot;&gt;&lt;span&gt;&lt;span class=&#39;co&#39;&gt;# https://www2.census.gov/programs-surveys/popest/datasets/2020-2021/counties/asrh/cc-est2021-alldata-04.csv&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;&lt;/span&gt;
+&lt;span&gt;&lt;span class=&#39;kw&#39;&gt;&lt;a href=&#39;https://rdrr.io/r/base/library.html&#39;&gt;library&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;va&#39;&gt;&lt;a href=&#39;https://tidyverse.tidyverse.org&#39;&gt;tidyverse&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;&lt;span class=&#39;va&#39;&gt;covid_new&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;&amp;lt;-&lt;/span&gt; &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://readr.tidyverse.org/reference/read_delim.html&#39;&gt;read_csv&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;st&#39;&gt;&quot;~/Downloads/covid_data_jan21.csv&quot;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;&lt;/span&gt;
+&lt;span&gt;&lt;span class=&#39;va&#39;&gt;covid_new_w_state&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;&lt;a href=&#39;https://magrittr.tidyverse.org/reference/pipe.html&#39;&gt;%&amp;gt;%&lt;/a&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;  &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://dplyr.tidyverse.org/reference/filter.html&#39;&gt;filter&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;va&#39;&gt;state&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;==&lt;/span&gt; &lt;span class=&#39;st&#39;&gt;&#39;Arizona&#39;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;&lt;a href=&#39;https://magrittr.tidyverse.org/reference/pipe.html&#39;&gt;%&amp;gt;%&lt;/a&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;  &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://dplyr.tidyverse.org/reference/filter.html&#39;&gt;filter&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;va&#39;&gt;county&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;==&lt;/span&gt; &lt;span class=&#39;st&#39;&gt;&#39;Apache County&#39;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;&lt;a href=&#39;https://magrittr.tidyverse.org/reference/pipe.html&#39;&gt;%&amp;gt;%&lt;/a&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;  &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://ggplot2.tidyverse.org/reference/ggplot.html&#39;&gt;ggplot&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;+&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;  &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://ggplot2.tidyverse.org/reference/geom_path.html&#39;&gt;geom_line&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://ggplot2.tidyverse.org/reference/aes.html&#39;&gt;aes&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;x &lt;span class=&#39;op&#39;&gt;=&lt;/span&gt; &lt;span class=&#39;va&#39;&gt;dates&lt;/span&gt;, y &lt;span class=&#39;op&#39;&gt;=&lt;/span&gt; &lt;span class=&#39;va&#39;&gt;dif_cases&lt;/span&gt;, color &lt;span class=&#39;op&#39;&gt;=&lt;/span&gt; &lt;span class=&#39;va&#39;&gt;categories&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;img src=&quot;index_files/figure-html5/unnamed-chunk-2-1.png&quot; width=&quot;624&quot; /&gt;&lt;div class=&quot;sourceCode&quot;&gt;&lt;pre class=&quot;sourceCode r&quot;&gt;&lt;code class=&quot;sourceCode r&quot;&gt;&lt;span&gt;&lt;span class=&#39;va&#39;&gt;AZ_county_dems&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;&amp;lt;-&lt;/span&gt; &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://readr.tidyverse.org/reference/read_delim.html&#39;&gt;read_csv&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;st&#39;&gt;&quot;~/Downloads/cc-est2021-alldata-04.csv&quot;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;|&amp;gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;  &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://dplyr.tidyverse.org/reference/filter.html&#39;&gt;filter&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;va&#39;&gt;YEAR&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;==&lt;/span&gt; &lt;span class=&#39;fl&#39;&gt;2&lt;/span&gt;,&lt;/span&gt;
+&lt;span&gt;         &lt;span class=&#39;va&#39;&gt;AGEGRP&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;==&lt;/span&gt; &lt;span class=&#39;fl&#39;&gt;0&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;         &lt;/span&gt;
+&lt;span&gt;&lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://rdrr.io/r/base/unique.html&#39;&gt;unique&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;va&#39;&gt;covid_new_w_state&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;$&lt;/span&gt;&lt;span class=&#39;va&#39;&gt;categories&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+</code></pre>
+<p>[1] “american_indian_alaska_native”<br />
+[2] “asian”<br />
+[3] “black_african_american”<br />
+[4] “cumulative_cases”<br />
+[5] “hispanic_(all_races)”<br />
+[6] “non-hispanic”<br />
+[7] “other”<br />
+[8] “unknown”<br />
+[9] “white”<br />
+[10] “2+_races”<br />
+[11] “native_hawaiian_pacific_islander”
+[12] “not_specified”</p>
+<pre><code>
+&lt;div class=&quot;sourceCode&quot;&gt;&lt;pre class=&quot;sourceCode r&quot;&gt;&lt;code class=&quot;sourceCode r&quot;&gt;&lt;span&gt;&lt;span class=&#39;va&#39;&gt;AZ_covid&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;&amp;lt;-&lt;/span&gt; &lt;span class=&#39;va&#39;&gt;covid_new_w_state&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;&lt;a href=&#39;https://magrittr.tidyverse.org/reference/pipe.html&#39;&gt;%&amp;gt;%&lt;/a&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;  &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://dplyr.tidyverse.org/reference/filter.html&#39;&gt;filter&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;va&#39;&gt;state&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;==&lt;/span&gt; &lt;span class=&#39;st&#39;&gt;&#39;Arizona&#39;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;&lt;/span&gt;
+&lt;span&gt;&lt;span class=&#39;co&#39;&gt;#_pc means per 100K race population &lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;&lt;/span&gt;
+&lt;span&gt;  &lt;span class=&#39;va&#39;&gt;AZ_covid_w_dems&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;&amp;lt;-&lt;/span&gt; &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://dplyr.tidyverse.org/reference/mutate-joins.html&#39;&gt;inner_join&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;va&#39;&gt;AZ_covid&lt;/span&gt;, &lt;span class=&#39;va&#39;&gt;AZ_county_dems&lt;/span&gt;, by &lt;span class=&#39;op&#39;&gt;=&lt;/span&gt; &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://rdrr.io/r/base/c.html&#39;&gt;c&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;st&#39;&gt;&quot;county&quot;&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;=&lt;/span&gt; &lt;span class=&#39;st&#39;&gt;&quot;CTYNAME&quot;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;|&amp;gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;  &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://dplyr.tidyverse.org/reference/mutate.html&#39;&gt;mutate&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;race_population &lt;span class=&#39;op&#39;&gt;=&lt;/span&gt; &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://dplyr.tidyverse.org/reference/case_when.html&#39;&gt;case_when&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;    &lt;span class=&#39;va&#39;&gt;categories&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;==&lt;/span&gt; &lt;span class=&#39;st&#39;&gt;&quot;american_indian_alaska_native&quot;&lt;/span&gt;  &lt;span class=&#39;op&#39;&gt;~&lt;/span&gt; &lt;span class=&#39;va&#39;&gt;IA_MALE&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;+&lt;/span&gt; &lt;span class=&#39;va&#39;&gt;IA_FEMALE&lt;/span&gt;,&lt;/span&gt;
+&lt;span&gt;    &lt;span class=&#39;va&#39;&gt;categories&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;==&lt;/span&gt; &lt;span class=&#39;st&#39;&gt;&quot;asian&quot;&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;~&lt;/span&gt; &lt;span class=&#39;va&#39;&gt;AA_MALE&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;+&lt;/span&gt; &lt;span class=&#39;va&#39;&gt;AA_FEMALE&lt;/span&gt;,&lt;/span&gt;
+&lt;span&gt;    &lt;span class=&#39;va&#39;&gt;categories&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;==&lt;/span&gt; &lt;span class=&#39;st&#39;&gt;&quot;black_african_american&quot;&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;~&lt;/span&gt; &lt;span class=&#39;va&#39;&gt;BA_MALE&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;+&lt;/span&gt; &lt;span class=&#39;va&#39;&gt;BA_FEMALE&lt;/span&gt;,&lt;/span&gt;
+&lt;span&gt;    &lt;span class=&#39;va&#39;&gt;categories&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;==&lt;/span&gt; &lt;span class=&#39;st&#39;&gt;&quot;cumulative_cases&quot;&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;~&lt;/span&gt; &lt;span class=&#39;va&#39;&gt;TOT_POP&lt;/span&gt;,&lt;/span&gt;
+&lt;span&gt;    &lt;span class=&#39;va&#39;&gt;categories&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;==&lt;/span&gt; &lt;span class=&#39;st&#39;&gt;&quot;hispanic_(all_races)&quot;&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;~&lt;/span&gt; &lt;span class=&#39;va&#39;&gt;H_MALE&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;+&lt;/span&gt; &lt;span class=&#39;va&#39;&gt;H_FEMALE&lt;/span&gt;,&lt;/span&gt;
+&lt;span&gt;    &lt;span class=&#39;va&#39;&gt;categories&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;==&lt;/span&gt; &lt;span class=&#39;st&#39;&gt;&quot;non-hispanic&quot;&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;~&lt;/span&gt; &lt;span class=&#39;va&#39;&gt;NH_MALE&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;+&lt;/span&gt; &lt;span class=&#39;va&#39;&gt;NH_FEMALE&lt;/span&gt;,&lt;/span&gt;
+&lt;span&gt;    &lt;span class=&#39;va&#39;&gt;categories&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;==&lt;/span&gt; &lt;span class=&#39;st&#39;&gt;&quot;other&quot;&lt;/span&gt;  &lt;span class=&#39;op&#39;&gt;~&lt;/span&gt; &lt;span class=&#39;va&#39;&gt;TOT_POP&lt;/span&gt;,&lt;/span&gt;
+&lt;span&gt;    &lt;span class=&#39;va&#39;&gt;categories&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;==&lt;/span&gt; &lt;span class=&#39;st&#39;&gt;&quot;unknown&quot;&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;~&lt;/span&gt; &lt;span class=&#39;va&#39;&gt;TOT_POP&lt;/span&gt;,&lt;/span&gt;
+&lt;span&gt;    &lt;span class=&#39;va&#39;&gt;categories&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;==&lt;/span&gt; &lt;span class=&#39;st&#39;&gt;&quot;white&quot;&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;~&lt;/span&gt; &lt;span class=&#39;va&#39;&gt;WA_MALE&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;+&lt;/span&gt; &lt;span class=&#39;va&#39;&gt;WA_FEMALE&lt;/span&gt;,&lt;/span&gt;
+&lt;span&gt;    &lt;span class=&#39;va&#39;&gt;categories&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;==&lt;/span&gt; &lt;span class=&#39;st&#39;&gt;&quot;2+_races&quot;&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;~&lt;/span&gt; &lt;span class=&#39;va&#39;&gt;TOM_MALE&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;+&lt;/span&gt; &lt;span class=&#39;va&#39;&gt;TOM_FEMALE&lt;/span&gt;,&lt;/span&gt;
+&lt;span&gt;    &lt;span class=&#39;va&#39;&gt;categories&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;==&lt;/span&gt; &lt;span class=&#39;st&#39;&gt;&quot;native_hawaiian_pacific_islander&quot;&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;~&lt;/span&gt; &lt;span class=&#39;va&#39;&gt;NA_MALE&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;+&lt;/span&gt; &lt;span class=&#39;va&#39;&gt;NA_FEMALE&lt;/span&gt;,&lt;/span&gt;
+&lt;span&gt;    &lt;span class=&#39;va&#39;&gt;categories&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;==&lt;/span&gt;  &lt;span class=&#39;st&#39;&gt;&quot;not_specified&quot;&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;~&lt;/span&gt; &lt;span class=&#39;va&#39;&gt;TOT_POP&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;  &lt;span class=&#39;op&#39;&gt;)&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;|&amp;gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;  &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://dplyr.tidyverse.org/reference/mutate.html&#39;&gt;mutate&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;race &lt;span class=&#39;op&#39;&gt;=&lt;/span&gt; &lt;span class=&#39;va&#39;&gt;categories&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;|&amp;gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;  &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://dplyr.tidyverse.org/reference/select.html&#39;&gt;select&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;va&#39;&gt;county&lt;/span&gt;, &lt;span class=&#39;va&#39;&gt;state&lt;/span&gt;, &lt;span class=&#39;va&#39;&gt;dates&lt;/span&gt;, &lt;span class=&#39;va&#39;&gt;race&lt;/span&gt;, &lt;span class=&#39;va&#39;&gt;cumul_cases&lt;/span&gt;, &lt;span class=&#39;va&#39;&gt;dif_days&lt;/span&gt;, &lt;span class=&#39;va&#39;&gt;dif_cases&lt;/span&gt;, &lt;span class=&#39;va&#39;&gt;daily_change&lt;/span&gt;, &lt;span class=&#39;va&#39;&gt;race_population&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;|&amp;gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;  &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://dplyr.tidyverse.org/reference/mutate.html&#39;&gt;mutate&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;cumul_cases_pc &lt;span class=&#39;op&#39;&gt;=&lt;/span&gt; &lt;span class=&#39;fl&#39;&gt;100000&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;*&lt;/span&gt; &lt;span class=&#39;va&#39;&gt;cumul_cases&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;/&lt;/span&gt; &lt;span class=&#39;va&#39;&gt;race_population&lt;/span&gt;,&lt;/span&gt;
+&lt;span&gt;         dif_cases_pc &lt;span class=&#39;op&#39;&gt;=&lt;/span&gt; &lt;span class=&#39;fl&#39;&gt;100000&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;*&lt;/span&gt; &lt;span class=&#39;va&#39;&gt;dif_cases&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;/&lt;/span&gt; &lt;span class=&#39;va&#39;&gt;race_population&lt;/span&gt;,&lt;/span&gt;
+&lt;span&gt;         daily_change_pc &lt;span class=&#39;op&#39;&gt;=&lt;/span&gt; &lt;span class=&#39;fl&#39;&gt;100000&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;*&lt;/span&gt; &lt;span class=&#39;va&#39;&gt;daily_change&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;/&lt;/span&gt; &lt;span class=&#39;va&#39;&gt;race_population&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+
+
+Looking at the data set, I reclassified the races to basically add male and female variables into one total for the race categories. I did not need the cases separated by gender for the purposes of my project. 
+
+# Analysis
+
+&lt;div class=&quot;layout-chunk&quot; data-layout=&quot;l-body&quot;&gt;
+&lt;div class=&quot;sourceCode&quot;&gt;&lt;pre class=&quot;sourceCode r&quot;&gt;&lt;code class=&quot;sourceCode r&quot;&gt;&lt;span&gt;&lt;span class=&#39;kw&#39;&gt;&lt;a href=&#39;https://rdrr.io/r/base/library.html&#39;&gt;library&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;va&#39;&gt;&lt;a href=&#39;https://tidyverse.tidyverse.org&#39;&gt;tidyverse&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;&lt;/span&gt;
+&lt;span&gt;&lt;span class=&#39;va&#39;&gt;AZ_covid_w_dems&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;&lt;a href=&#39;https://magrittr.tidyverse.org/reference/pipe.html&#39;&gt;%&amp;gt;%&lt;/a&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;  &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://dplyr.tidyverse.org/reference/filter.html&#39;&gt;filter&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;va&#39;&gt;county&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;==&lt;/span&gt; &lt;span class=&#39;st&#39;&gt;&#39;Apache County&#39;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;|&amp;gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;  &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://dplyr.tidyverse.org/reference/filter.html&#39;&gt;filter&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;va&#39;&gt;race&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;&lt;a href=&#39;https://rdrr.io/r/base/match.html&#39;&gt;%in%&lt;/a&gt;&lt;/span&gt; &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://rdrr.io/r/base/c.html&#39;&gt;c&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;st&#39;&gt;&quot;american_indian_alaska_native&quot;&lt;/span&gt;, &lt;span class=&#39;st&#39;&gt;&quot;white&quot;&lt;/span&gt;, &lt;span class=&#39;st&#39;&gt;&quot;unknown&quot;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;|&amp;gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;  &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://ggplot2.tidyverse.org/reference/ggplot.html&#39;&gt;ggplot&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;+&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;  &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://ggplot2.tidyverse.org/reference/geom_path.html&#39;&gt;geom_line&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://ggplot2.tidyverse.org/reference/aes.html&#39;&gt;aes&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;x &lt;span class=&#39;op&#39;&gt;=&lt;/span&gt; &lt;span class=&#39;va&#39;&gt;dates&lt;/span&gt;, y &lt;span class=&#39;op&#39;&gt;=&lt;/span&gt; &lt;span class=&#39;va&#39;&gt;dif_cases_pc&lt;/span&gt;, color &lt;span class=&#39;op&#39;&gt;=&lt;/span&gt; &lt;span class=&#39;va&#39;&gt;race&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;img src=&quot;index_files/figure-html5/unnamed-chunk-3-1.png&quot; width=&quot;624&quot; /&gt;&lt;div class=&quot;sourceCode&quot;&gt;&lt;pre class=&quot;sourceCode r&quot;&gt;&lt;code class=&quot;sourceCode r&quot;&gt;&lt;span&gt;&lt;span class=&#39;va&#39;&gt;AZ_covid_w_dems&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;&lt;a href=&#39;https://magrittr.tidyverse.org/reference/pipe.html&#39;&gt;%&amp;gt;%&lt;/a&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;  &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://dplyr.tidyverse.org/reference/filter.html&#39;&gt;filter&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;va&#39;&gt;county&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;==&lt;/span&gt; &lt;span class=&#39;st&#39;&gt;&#39;Navajo County&#39;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;&lt;a href=&#39;https://magrittr.tidyverse.org/reference/pipe.html&#39;&gt;%&amp;gt;%&lt;/a&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;  &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://dplyr.tidyverse.org/reference/filter.html&#39;&gt;filter&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;va&#39;&gt;race&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;&lt;a href=&#39;https://rdrr.io/r/base/match.html&#39;&gt;%in%&lt;/a&gt;&lt;/span&gt; &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://rdrr.io/r/base/c.html&#39;&gt;c&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;st&#39;&gt;&quot;american_indian_alaska_native&quot;&lt;/span&gt;, &lt;span class=&#39;st&#39;&gt;&quot;white&quot;&lt;/span&gt;, &lt;span class=&#39;st&#39;&gt;&quot;unknown&quot;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;|&amp;gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;  &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://ggplot2.tidyverse.org/reference/ggplot.html&#39;&gt;ggplot&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;+&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;  &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://ggplot2.tidyverse.org/reference/geom_path.html&#39;&gt;geom_line&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://ggplot2.tidyverse.org/reference/aes.html&#39;&gt;aes&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;x &lt;span class=&#39;op&#39;&gt;=&lt;/span&gt; &lt;span class=&#39;va&#39;&gt;dates&lt;/span&gt;, y &lt;span class=&#39;op&#39;&gt;=&lt;/span&gt; &lt;span class=&#39;va&#39;&gt;dif_cases_pc&lt;/span&gt;, color &lt;span class=&#39;op&#39;&gt;=&lt;/span&gt; &lt;span class=&#39;va&#39;&gt;race&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;img src=&quot;index_files/figure-html5/unnamed-chunk-3-2.png&quot; width=&quot;624&quot; /&gt;&lt;div class=&quot;sourceCode&quot;&gt;&lt;pre class=&quot;sourceCode r&quot;&gt;&lt;code class=&quot;sourceCode r&quot;&gt;&lt;span&gt;&lt;span class=&#39;va&#39;&gt;AZ_covid_w_dems&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;&lt;a href=&#39;https://magrittr.tidyverse.org/reference/pipe.html&#39;&gt;%&amp;gt;%&lt;/a&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;  &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://dplyr.tidyverse.org/reference/filter.html&#39;&gt;filter&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;va&#39;&gt;county&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;==&lt;/span&gt; &lt;span class=&#39;st&#39;&gt;&#39;Yavapai County&#39;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;&lt;a href=&#39;https://magrittr.tidyverse.org/reference/pipe.html&#39;&gt;%&amp;gt;%&lt;/a&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;  &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://dplyr.tidyverse.org/reference/filter.html&#39;&gt;filter&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;va&#39;&gt;race&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;&lt;a href=&#39;https://rdrr.io/r/base/match.html&#39;&gt;%in%&lt;/a&gt;&lt;/span&gt; &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://rdrr.io/r/base/c.html&#39;&gt;c&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;st&#39;&gt;&quot;american_indian_alaska_native&quot;&lt;/span&gt;, &lt;span class=&#39;st&#39;&gt;&quot;white&quot;&lt;/span&gt;, &lt;span class=&#39;st&#39;&gt;&quot;unknown&quot;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;|&amp;gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;  &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://ggplot2.tidyverse.org/reference/ggplot.html&#39;&gt;ggplot&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;+&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;  &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://ggplot2.tidyverse.org/reference/geom_path.html&#39;&gt;geom_line&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://ggplot2.tidyverse.org/reference/aes.html&#39;&gt;aes&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;x &lt;span class=&#39;op&#39;&gt;=&lt;/span&gt; &lt;span class=&#39;va&#39;&gt;dates&lt;/span&gt;, y &lt;span class=&#39;op&#39;&gt;=&lt;/span&gt; &lt;span class=&#39;va&#39;&gt;dif_cases_pc&lt;/span&gt;, color &lt;span class=&#39;op&#39;&gt;=&lt;/span&gt; &lt;span class=&#39;va&#39;&gt;race&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;img src=&quot;index_files/figure-html5/unnamed-chunk-3-3.png&quot; width=&quot;624&quot; /&gt;
+
+&lt;/div&gt;
+
+
+Then, I calculated the cumulative cases per 100K: this is 100K multiplied by the cumulative cases, divided by the race population estimate. The resulting plots looked at the new cases over time, but this time normalized by population. Instead of looking at just new cases, we looked at new cases per 100K. Looking at the cases per 100K allows us to see if the differences in numbers are because the races were affected differently OR if it was due to population numbers. By using 100K, we are able to look at the cases per race proportionally. Looking at the new graphs, we can make a more definitive judgment about the reporting errors. 
+
+Based on Apache County, the first  unknown spike is skewed directly to the AI/AN spike on January 7. It appears that AI/AN were dramatically misreported at first. The second spike around January 20 appears to be remedied; white and AI/AN cases were correctly re-reported after being classified as unknown. However, we cannot say for certain what caused these results.
+
+In Navajo country, results are more strongly affecting AI/AN cases. The unknown spikes coincide directly with that of AI/AN spikes, on January 7-8 and the 20-22. They might have been incorrectly classified at first and then reclassified as AI/AN. 
+
+In Yavapai, the reclassification spikes seemed to occur weekly — maybe every week they attempted to go in every week and remedy the misclassified race whereas Navajo and Apache did so biweekly. The AI/AN cases spike when the unknown are reclassified on January 8, 13, 22, and 29.
+
+&lt;div class=&quot;layout-chunk&quot; data-layout=&quot;l-body&quot;&gt;
+&lt;div class=&quot;sourceCode&quot;&gt;&lt;pre class=&quot;sourceCode r&quot;&gt;&lt;code class=&quot;sourceCode r&quot;&gt;&lt;span&gt;&lt;span class=&#39;va&#39;&gt;AZ_covid_w_dems&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;&lt;a href=&#39;https://magrittr.tidyverse.org/reference/pipe.html&#39;&gt;%&amp;gt;%&lt;/a&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;  &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://dplyr.tidyverse.org/reference/filter.html&#39;&gt;filter&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;va&#39;&gt;county&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;==&lt;/span&gt; &lt;span class=&#39;st&#39;&gt;&#39;Apache County&#39;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;|&amp;gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;  &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://dplyr.tidyverse.org/reference/filter.html&#39;&gt;filter&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;va&#39;&gt;race&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;&lt;a href=&#39;https://rdrr.io/r/base/match.html&#39;&gt;%in%&lt;/a&gt;&lt;/span&gt; &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://rdrr.io/r/base/c.html&#39;&gt;c&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;st&#39;&gt;&quot;american_indian_alaska_native&quot;&lt;/span&gt;, &lt;span class=&#39;st&#39;&gt;&quot;white&quot;&lt;/span&gt;, &lt;span class=&#39;st&#39;&gt;&quot;unknown&quot;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;|&amp;gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;  &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://ggplot2.tidyverse.org/reference/ggplot.html&#39;&gt;ggplot&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;+&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;  &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://ggplot2.tidyverse.org/reference/geom_path.html&#39;&gt;geom_line&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://ggplot2.tidyverse.org/reference/aes.html&#39;&gt;aes&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;x &lt;span class=&#39;op&#39;&gt;=&lt;/span&gt; &lt;span class=&#39;va&#39;&gt;dates&lt;/span&gt;, y &lt;span class=&#39;op&#39;&gt;=&lt;/span&gt; &lt;span class=&#39;va&#39;&gt;cumul_cases_pc&lt;/span&gt;, color &lt;span class=&#39;op&#39;&gt;=&lt;/span&gt; &lt;span class=&#39;va&#39;&gt;race&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;img src=&quot;index_files/figure-html5/unnamed-chunk-4-1.png&quot; width=&quot;624&quot; /&gt;&lt;div class=&quot;sourceCode&quot;&gt;&lt;pre class=&quot;sourceCode r&quot;&gt;&lt;code class=&quot;sourceCode r&quot;&gt;&lt;span&gt;&lt;span class=&#39;va&#39;&gt;AZ_covid_w_dems&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;&lt;a href=&#39;https://magrittr.tidyverse.org/reference/pipe.html&#39;&gt;%&amp;gt;%&lt;/a&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;  &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://dplyr.tidyverse.org/reference/filter.html&#39;&gt;filter&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;va&#39;&gt;county&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;==&lt;/span&gt; &lt;span class=&#39;st&#39;&gt;&#39;Navajo County&#39;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;&lt;a href=&#39;https://magrittr.tidyverse.org/reference/pipe.html&#39;&gt;%&amp;gt;%&lt;/a&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;  &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://dplyr.tidyverse.org/reference/filter.html&#39;&gt;filter&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;va&#39;&gt;race&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;&lt;a href=&#39;https://rdrr.io/r/base/match.html&#39;&gt;%in%&lt;/a&gt;&lt;/span&gt; &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://rdrr.io/r/base/c.html&#39;&gt;c&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;st&#39;&gt;&quot;american_indian_alaska_native&quot;&lt;/span&gt;, &lt;span class=&#39;st&#39;&gt;&quot;white&quot;&lt;/span&gt;, &lt;span class=&#39;st&#39;&gt;&quot;unknown&quot;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;|&amp;gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;  &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://ggplot2.tidyverse.org/reference/ggplot.html&#39;&gt;ggplot&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;+&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;  &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://ggplot2.tidyverse.org/reference/geom_path.html&#39;&gt;geom_line&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://ggplot2.tidyverse.org/reference/aes.html&#39;&gt;aes&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;x &lt;span class=&#39;op&#39;&gt;=&lt;/span&gt; &lt;span class=&#39;va&#39;&gt;dates&lt;/span&gt;, y &lt;span class=&#39;op&#39;&gt;=&lt;/span&gt; &lt;span class=&#39;va&#39;&gt;cumul_cases_pc&lt;/span&gt;, color &lt;span class=&#39;op&#39;&gt;=&lt;/span&gt; &lt;span class=&#39;va&#39;&gt;race&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;img src=&quot;index_files/figure-html5/unnamed-chunk-4-2.png&quot; width=&quot;624&quot; /&gt;&lt;div class=&quot;sourceCode&quot;&gt;&lt;pre class=&quot;sourceCode r&quot;&gt;&lt;code class=&quot;sourceCode r&quot;&gt;&lt;span&gt;&lt;span class=&#39;va&#39;&gt;AZ_covid_w_dems&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;&lt;a href=&#39;https://magrittr.tidyverse.org/reference/pipe.html&#39;&gt;%&amp;gt;%&lt;/a&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;  &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://dplyr.tidyverse.org/reference/filter.html&#39;&gt;filter&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;va&#39;&gt;county&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;==&lt;/span&gt; &lt;span class=&#39;st&#39;&gt;&#39;Yavapai County&#39;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;&lt;a href=&#39;https://magrittr.tidyverse.org/reference/pipe.html&#39;&gt;%&amp;gt;%&lt;/a&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;  &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://dplyr.tidyverse.org/reference/filter.html&#39;&gt;filter&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;va&#39;&gt;race&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;&lt;a href=&#39;https://rdrr.io/r/base/match.html&#39;&gt;%in%&lt;/a&gt;&lt;/span&gt; &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://rdrr.io/r/base/c.html&#39;&gt;c&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;st&#39;&gt;&quot;american_indian_alaska_native&quot;&lt;/span&gt;, &lt;span class=&#39;st&#39;&gt;&quot;white&quot;&lt;/span&gt;, &lt;span class=&#39;st&#39;&gt;&quot;unknown&quot;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;|&amp;gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;  &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://ggplot2.tidyverse.org/reference/ggplot.html&#39;&gt;ggplot&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;+&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;  &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://ggplot2.tidyverse.org/reference/geom_path.html&#39;&gt;geom_line&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://ggplot2.tidyverse.org/reference/aes.html&#39;&gt;aes&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;x &lt;span class=&#39;op&#39;&gt;=&lt;/span&gt; &lt;span class=&#39;va&#39;&gt;dates&lt;/span&gt;, y &lt;span class=&#39;op&#39;&gt;=&lt;/span&gt; &lt;span class=&#39;va&#39;&gt;cumul_cases_pc&lt;/span&gt;, color &lt;span class=&#39;op&#39;&gt;=&lt;/span&gt; &lt;span class=&#39;va&#39;&gt;race&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;img src=&quot;index_files/figure-html5/unnamed-chunk-4-3.png&quot; width=&quot;624&quot; /&gt;
+
+&lt;/div&gt;
+
+
+Next, plotted the cumulative cases over time per 100K for each race in each of the three counties. In Apache, by large, there were lots of unknowns. The unknown is higher than the AI/AN and white cases by almost double, we can’t even confirm for certain whether the white and AI/AN data is reliable. However, white and  AI/AN cases seem to follow similar trends in case rates. 
+
+In Navajo, based on the chart above looking at Covid cases per day in January for AI/AN individuals, we know the steep increases around January 7-8 and 20-22 are most likely just reclassifications of race, not days where AI/AN people were supposedly hit harder by Covid than white populations in the county. Navajo sees fewer unknown cases than the Apache county, and a much larger disparity due to case rate overall. 
+
+For Yavapai, unknown cases are lower than the two other counties and constant over time, so perhaps this county is doing an adequate job of reporting the racial cases as they are reported. The difference in AI/AN rates and white rates is not as high as Navajo county, so the disparity isn’t as great. However, looking at the slopes, the white and AI/AN slopes look different. In Navajo, it appears that the slope of the white and AI/AN over time are the same. Alternatively, Covid at this point in time in Yavapai seems to present different slopes for AI/AN and white people. AI/AN sees a much sharper slope, so maybe Covid cases in this specific county increased for AI/AN people sharply.
+
+# Summary Plot of Main Dependent Variable (Cumulative Cases Per 100K)
+
+&lt;div class=&quot;layout-chunk&quot; data-layout=&quot;l-body&quot;&gt;
+&lt;div class=&quot;sourceCode&quot;&gt;&lt;pre class=&quot;sourceCode r&quot;&gt;&lt;code class=&quot;sourceCode r&quot;&gt;&lt;span&gt;&lt;span class=&#39;va&#39;&gt;AZ_covid_w_dems&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;|&amp;gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;  &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://dplyr.tidyverse.org/reference/filter.html&#39;&gt;filter&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;va&#39;&gt;race&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;!=&lt;/span&gt; &lt;span class=&#39;st&#39;&gt;&#39;cumulative_cases&#39;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;|&amp;gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;  &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://dplyr.tidyverse.org/reference/filter.html&#39;&gt;filter&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;va&#39;&gt;dates&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;==&lt;/span&gt; &lt;span class=&#39;st&#39;&gt;&#39;2021-01-31&#39;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;|&amp;gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;  &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://ggplot2.tidyverse.org/reference/ggplot.html&#39;&gt;ggplot&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://ggplot2.tidyverse.org/reference/aes.html&#39;&gt;aes&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;y &lt;span class=&#39;op&#39;&gt;=&lt;/span&gt; &lt;span class=&#39;va&#39;&gt;race&lt;/span&gt;, x &lt;span class=&#39;op&#39;&gt;=&lt;/span&gt; &lt;span class=&#39;va&#39;&gt;cumul_cases_pc&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;+&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;  &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://ggplot2.tidyverse.org/reference/geom_boxplot.html&#39;&gt;geom_boxplot&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;+&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;  &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://ggplot2.tidyverse.org/reference/ggtheme.html&#39;&gt;theme_minimal&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;+&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;  &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://ggplot2.tidyverse.org/reference/labs.html&#39;&gt;labs&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;x &lt;span class=&#39;op&#39;&gt;=&lt;/span&gt; &lt;span class=&#39;st&#39;&gt;&#39;Cumulative Cases Per 100K at the County Level&#39;&lt;/span&gt;,&lt;/span&gt;
+&lt;span&gt;       y &lt;span class=&#39;op&#39;&gt;=&lt;/span&gt; &lt;span class=&#39;st&#39;&gt;&#39;&#39;&lt;/span&gt;,&lt;/span&gt;
+&lt;span&gt;       title &lt;span class=&#39;op&#39;&gt;=&lt;/span&gt; &lt;span class=&#39;st&#39;&gt;&#39;Covid Cases Per 100K by Race in Arizona Counties, as of January 2021&#39;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;+&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;  &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://ggplot2.tidyverse.org/reference/scale_discrete.html&#39;&gt;scale_y_discrete&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;breaks &lt;span class=&#39;op&#39;&gt;=&lt;/span&gt; &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://rdrr.io/r/base/c.html&#39;&gt;c&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;st&#39;&gt;&#39;white&#39;&lt;/span&gt;,&lt;/span&gt;
+&lt;span&gt;                              &lt;span class=&#39;st&#39;&gt;&#39;unknown&#39;&lt;/span&gt;,&lt;/span&gt;
+&lt;span&gt;                              &lt;span class=&#39;st&#39;&gt;&#39;other&#39;&lt;/span&gt;,&lt;/span&gt;
+&lt;span&gt;                              &lt;span class=&#39;st&#39;&gt;&#39;hispanic_(all_races)&#39;&lt;/span&gt;,&lt;/span&gt;
+&lt;span&gt;                              &lt;span class=&#39;st&#39;&gt;&#39;black_african_american&#39;&lt;/span&gt;,&lt;/span&gt;
+&lt;span&gt;                              &lt;span class=&#39;st&#39;&gt;&#39;asian&#39;&lt;/span&gt;,&lt;/span&gt;
+&lt;span&gt;                              &lt;span class=&#39;st&#39;&gt;&#39;american_indian_alaska_native&#39;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt;,&lt;/span&gt;
+&lt;span&gt;                   labels &lt;span class=&#39;op&#39;&gt;=&lt;/span&gt; &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://rdrr.io/r/base/c.html&#39;&gt;c&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;st&#39;&gt;&#39;White&#39;&lt;/span&gt;,&lt;/span&gt;
+&lt;span&gt;                              &lt;span class=&#39;st&#39;&gt;&#39;Unknown Race&#39;&lt;/span&gt;,&lt;/span&gt;
+&lt;span&gt;                              &lt;span class=&#39;st&#39;&gt;&#39;Other&#39;&lt;/span&gt;,&lt;/span&gt;
+&lt;span&gt;                              &lt;span class=&#39;st&#39;&gt;&#39;Hispanic&#39;&lt;/span&gt;,&lt;/span&gt;
+&lt;span&gt;                              &lt;span class=&#39;st&#39;&gt;&#39;Black&#39;&lt;/span&gt;,&lt;/span&gt;
+&lt;span&gt;                              &lt;span class=&#39;st&#39;&gt;&#39;Asian&#39;&lt;/span&gt;,&lt;/span&gt;
+&lt;span&gt;                              &lt;span class=&#39;st&#39;&gt;&#39;AI/AN&#39;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;                   &lt;span class=&#39;op&#39;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;img src=&quot;index_files/figure-html5/unnamed-chunk-5-1.png&quot; width=&quot;624&quot; /&gt;
+
+&lt;/div&gt;
+
+
+Next, the summary of the main dependent variable is, at the end of January in 2021, the distribution of cumulative cases per 100K at the county level in Arizona. Each distribution in the chart shows the cumulative case rates for each county by race group. There is a much greater variance at the county level compared to white people for AI/AN. The mean level is 2500 cases higher per 100K than the white population. Because there is higher variance in AI/AN populations, I specifically picked the three counties with higher AI/AN populations. 
+
+Furthermore, for the regression, I calculated the number of days for the report to the start of 2021. This put time as a number instead of a categorical variable. By making it a numerical variable, we are effectively forcing the slope to increase over time. Every additional day in 2021, how much would we expect AI/AN cases to increase? Our other two variables, race and county, are categorical.
+
+Note: For coding, since AI/AN was the baseline, I only needed to intercept and the coefficient for days. Looking at white people (since it was not the reference) I needed to look at the coefficient on white and the coefficient for days. Similarly, not Apache county but Navajo county, since Apache was my reference but Navajo was not, I had to add the Navajo county coefficient and the coefficient days. The outcomes for this work tells us the regression equation for that race in that county over time. 
+
+As for the regression, we see that “racewhite” compared to AI/AN on average shows that white populations at the county level will see 3,370 less Covid cases per 100K than AI/AN people, holding the time and county constant. We are not looking across counties or from the start to the end of the month — rather, one specific county on one specific day. The p-value is 0, meaning it’s statistically significant, so we can be fairly sure that on average white populations had lower Covid rates than AI/AN populations in these three counties in Arizona. 
+
+# Multiple Regression Code
+
+&lt;div class=&quot;layout-chunk&quot; data-layout=&quot;l-body&quot;&gt;
+&lt;div class=&quot;sourceCode&quot;&gt;&lt;pre class=&quot;sourceCode r&quot;&gt;&lt;code class=&quot;sourceCode r&quot;&gt;&lt;span&gt;&lt;span class=&#39;co&#39;&gt;### Making numerical days since start of year&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;&lt;/span&gt;
+&lt;span&gt;&lt;span class=&#39;va&#39;&gt;covid_days&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;&amp;lt;-&lt;/span&gt; &lt;span class=&#39;va&#39;&gt;AZ_covid_w_dems&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;|&amp;gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;  &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://dplyr.tidyverse.org/reference/mutate.html&#39;&gt;mutate&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;days &lt;span class=&#39;op&#39;&gt;=&lt;/span&gt; &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://rdrr.io/r/base/numeric.html&#39;&gt;as.numeric&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;va&#39;&gt;dates&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;-&lt;/span&gt; &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://rdrr.io/r/base/as.Date.html&#39;&gt;as.Date&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;st&#39;&gt;&#39;2021-01-01&#39;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;&lt;/span&gt;
+&lt;span&gt;&lt;span class=&#39;va&#39;&gt;lm1&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;&amp;lt;-&lt;/span&gt; &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://rdrr.io/r/stats/lm.html&#39;&gt;lm&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;data &lt;span class=&#39;op&#39;&gt;=&lt;/span&gt; &lt;span class=&#39;va&#39;&gt;covid_days&lt;/span&gt;,&lt;/span&gt;
+&lt;span&gt;          formula &lt;span class=&#39;op&#39;&gt;=&lt;/span&gt; &lt;span class=&#39;va&#39;&gt;cumul_cases_pc&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;~&lt;/span&gt; &lt;span class=&#39;va&#39;&gt;days&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;+&lt;/span&gt; &lt;span class=&#39;va&#39;&gt;race&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;+&lt;/span&gt; &lt;span class=&#39;va&#39;&gt;county&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+
+
+AI/AN + Apache:
+
+ccpc = 6871.837 + 53.022(days)
+
+White + Apache:
+
+&lt;div class=&quot;layout-chunk&quot; data-layout=&quot;l-body&quot;&gt;
+&lt;div class=&quot;sourceCode&quot;&gt;&lt;pre class=&quot;sourceCode r&quot;&gt;&lt;code class=&quot;sourceCode r&quot;&gt;&lt;span&gt;&lt;span class=&#39;fl&#39;&gt;6871.837&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;-&lt;/span&gt; &lt;span class=&#39;fl&#39;&gt;3369.945&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+</code></pre>
+<p>[1] 3501.892</p>
+<pre><code>
+&lt;/div&gt;
+
+
+
+ccpc = 6871.837 + 53.022(days) - 3369.945 = 3369.945 + 53.022(days)
+
+
+#### now in navajo cty
+
+AI/AN + navajo:
+
+&lt;div class=&quot;layout-chunk&quot; data-layout=&quot;l-body&quot;&gt;
+&lt;div class=&quot;sourceCode&quot;&gt;&lt;pre class=&quot;sourceCode r&quot;&gt;&lt;code class=&quot;sourceCode r&quot;&gt;&lt;span&gt;&lt;span class=&#39;fl&#39;&gt;6871.837&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;-&lt;/span&gt; &lt;span class=&#39;fl&#39;&gt;1418.259&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+</code></pre>
+<p>[1] 5453.578</p>
+<pre><code>
+&lt;/div&gt;
+
+
+ccpc = 6871.837 + 53.022(days) + 1418.259 = 5453.578 + 53.022(days)
+
+White + navajo:
+
+&lt;div class=&quot;layout-chunk&quot; data-layout=&quot;l-body&quot;&gt;
+&lt;div class=&quot;sourceCode&quot;&gt;&lt;pre class=&quot;sourceCode r&quot;&gt;&lt;code class=&quot;sourceCode r&quot;&gt;&lt;span&gt;&lt;span class=&#39;fl&#39;&gt;6871.837&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;-&lt;/span&gt; &lt;span class=&#39;fl&#39;&gt;3369.945&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;+&lt;/span&gt; &lt;span class=&#39;fl&#39;&gt;1418.259&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+</code></pre>
+<p>[1] 4920.151</p>
+<pre><code>
+&lt;/div&gt;
+
+
+
+ccpc = 6871.837 + 53.022(days) - 3369.945 + 1418.259 = 4920.151 + 53.022(days)
+
+# Multiple Regression Table
+
+&lt;div class=&quot;layout-chunk&quot; data-layout=&quot;l-body&quot;&gt;
+&lt;div class=&quot;sourceCode&quot;&gt;&lt;pre class=&quot;sourceCode r&quot;&gt;&lt;code class=&quot;sourceCode r&quot;&gt;&lt;span&gt;&lt;span class=&#39;co&#39;&gt;### Regression Table&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;&lt;span class=&#39;kw&#39;&gt;&lt;a href=&#39;https://rdrr.io/r/base/library.html&#39;&gt;library&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;va&#39;&gt;&lt;a href=&#39;https://jtools.jacob-long.com&#39;&gt;jtools&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;&lt;/span&gt;
+&lt;span&gt;&lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://jtools.jacob-long.com/reference/summ.html&#39;&gt;summ&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;va&#39;&gt;lm1&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;table class=&quot;table table-striped table-hover table-condensed table-responsive&quot; style=&quot;width: auto !important; margin-left: auto; margin-right: auto;&quot;&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style=&quot;text-align:left;font-weight: bold;&quot;&gt; Observations &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 3691 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&quot;text-align:left;font-weight: bold;&quot;&gt; Dependent variable &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; cumul_cases_pc &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&quot;text-align:left;font-weight: bold;&quot;&gt; Type &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; OLS linear regression &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt; &lt;table class=&quot;table table-striped table-hover table-condensed table-responsive&quot; style=&quot;width: auto !important; margin-left: auto; margin-right: auto;&quot;&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style=&quot;text-align:left;font-weight: bold;&quot;&gt; F(23,3667) &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 443.98 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&quot;text-align:left;font-weight: bold;&quot;&gt; R² &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 0.74 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&quot;text-align:left;font-weight: bold;&quot;&gt; Adj. R² &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 0.73 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt; &lt;table class=&quot;table table-striped table-hover table-condensed table-responsive&quot; style=&quot;width: auto !important; margin-left: auto; margin-right: auto;border-bottom: 0;&quot;&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style=&quot;text-align:left;&quot;&gt;   &lt;/th&gt;
+   &lt;th style=&quot;text-align:right;&quot;&gt; Est. &lt;/th&gt;
+   &lt;th style=&quot;text-align:right;&quot;&gt; S.E. &lt;/th&gt;
+   &lt;th style=&quot;text-align:right;&quot;&gt; t val. &lt;/th&gt;
+   &lt;th style=&quot;text-align:right;&quot;&gt; p &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style=&quot;text-align:left;font-weight: bold;&quot;&gt; (Intercept) &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 6871.84 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 169.96 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 40.43 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 0.00 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&quot;text-align:left;font-weight: bold;&quot;&gt; days &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 53.02 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 3.83 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 13.84 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 0.00 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&quot;text-align:left;font-weight: bold;&quot;&gt; raceasian &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; -4468.64 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 136.94 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; -32.63 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 0.00 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&quot;text-align:left;font-weight: bold;&quot;&gt; raceblack_african_american &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; -3116.17 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 136.25 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; -22.87 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 0.00 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&quot;text-align:left;font-weight: bold;&quot;&gt; racecumulative_cases &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 2597.94 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 137.47 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 18.90 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 0.00 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&quot;text-align:left;font-weight: bold;&quot;&gt; racehispanic_(all_races) &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; -217.36 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 136.47 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; -1.59 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 0.11 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&quot;text-align:left;font-weight: bold;&quot;&gt; racenative_hawaiian_pacific_islander &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 75788.27 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 2083.78 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 36.37 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 0.00 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&quot;text-align:left;font-weight: bold;&quot;&gt; raceother &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; -7032.17 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 136.32 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; -51.59 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 0.00 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&quot;text-align:left;font-weight: bold;&quot;&gt; raceunknown &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; -5074.42 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 136.32 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; -37.22 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 0.00 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&quot;text-align:left;font-weight: bold;&quot;&gt; racewhite &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; -3369.95 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 136.25 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; -24.73 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 0.00 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&quot;text-align:left;font-weight: bold;&quot;&gt; countyCochise County &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; -1251.92 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 186.94 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; -6.70 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 0.00 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&quot;text-align:left;font-weight: bold;&quot;&gt; countyCoconino County &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 996.88 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 187.13 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 5.33 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 0.00 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&quot;text-align:left;font-weight: bold;&quot;&gt; countyGila County &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 221.76 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 187.13 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 1.19 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 0.24 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&quot;text-align:left;font-weight: bold;&quot;&gt; countyGraham County &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 196.02 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 187.13 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 1.05 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 0.29 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&quot;text-align:left;font-weight: bold;&quot;&gt; countyGreenlee County &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; -3261.18 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 188.74 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; -17.28 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 0.00 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&quot;text-align:left;font-weight: bold;&quot;&gt; countyLa Paz County &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 826.53 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 186.94 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 4.42 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 0.00 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&quot;text-align:left;font-weight: bold;&quot;&gt; countyMaricopa County &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; -2.87 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 187.13 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; -0.02 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 0.99 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&quot;text-align:left;font-weight: bold;&quot;&gt; countyMohave County &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; -733.78 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 186.94 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; -3.93 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 0.00 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&quot;text-align:left;font-weight: bold;&quot;&gt; countyNavajo County &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 1418.26 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 186.94 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 7.59 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 0.00 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&quot;text-align:left;font-weight: bold;&quot;&gt; countyPima County &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; -666.75 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 187.32 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; -3.56 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 0.00 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&quot;text-align:left;font-weight: bold;&quot;&gt; countyPinal County &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; -436.00 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 186.94 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; -2.33 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 0.02 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&quot;text-align:left;font-weight: bold;&quot;&gt; countySanta Cruz County &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; -858.09 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 186.94 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; -4.59 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 0.00 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&quot;text-align:left;font-weight: bold;&quot;&gt; countyYavapai County &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; -1508.88 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 186.94 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; -8.07 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 0.00 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&quot;text-align:left;font-weight: bold;&quot;&gt; countyYuma County &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 1521.49 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 186.94 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 8.14 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 0.00 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;tfoot&gt;&lt;tr&gt;&lt;td style=&quot;padding: 0; &quot; colspan=&quot;100%&quot;&gt;
+&lt;sup&gt;&lt;/sup&gt; Standard errors: OLS&lt;/td&gt;&lt;/tr&gt;&lt;/tfoot&gt;
+&lt;/table&gt;
+
+&lt;/div&gt;
+
+
+# Plots Showing Main Relationships of Interest
+
+&lt;div class=&quot;layout-chunk&quot; data-layout=&quot;l-body&quot;&gt;
+&lt;div class=&quot;sourceCode&quot;&gt;&lt;pre class=&quot;sourceCode r&quot;&gt;&lt;code class=&quot;sourceCode r&quot;&gt;&lt;span&gt;&lt;span class=&#39;co&#39;&gt;### Line Graphs of Cases by Race over time in Navajo, Apache, and Yavapai Counties&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;&lt;/span&gt;
+&lt;span&gt;&lt;/span&gt;
+&lt;span&gt;&lt;span class=&#39;va&#39;&gt;AZ_covid_w_dems&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;&lt;a href=&#39;https://magrittr.tidyverse.org/reference/pipe.html&#39;&gt;%&amp;gt;%&lt;/a&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;  &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://dplyr.tidyverse.org/reference/filter.html&#39;&gt;filter&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;va&#39;&gt;county&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;==&lt;/span&gt; &lt;span class=&#39;st&#39;&gt;&#39;Apache County&#39;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;|&amp;gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;  &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://dplyr.tidyverse.org/reference/filter.html&#39;&gt;filter&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;va&#39;&gt;race&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;&lt;a href=&#39;https://rdrr.io/r/base/match.html&#39;&gt;%in%&lt;/a&gt;&lt;/span&gt; &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://rdrr.io/r/base/c.html&#39;&gt;c&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;st&#39;&gt;&quot;american_indian_alaska_native&quot;&lt;/span&gt;, &lt;span class=&#39;st&#39;&gt;&quot;white&quot;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;|&amp;gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;  &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://ggplot2.tidyverse.org/reference/ggplot.html&#39;&gt;ggplot&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;+&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;  &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://ggplot2.tidyverse.org/reference/geom_path.html&#39;&gt;geom_line&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://ggplot2.tidyverse.org/reference/aes.html&#39;&gt;aes&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;x &lt;span class=&#39;op&#39;&gt;=&lt;/span&gt; &lt;span class=&#39;va&#39;&gt;dates&lt;/span&gt;, y &lt;span class=&#39;op&#39;&gt;=&lt;/span&gt; &lt;span class=&#39;va&#39;&gt;cumul_cases_pc&lt;/span&gt;, color &lt;span class=&#39;op&#39;&gt;=&lt;/span&gt; &lt;span class=&#39;va&#39;&gt;race&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;+&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;  &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://ggplot2.tidyverse.org/reference/ggtheme.html&#39;&gt;theme_minimal&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;+&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;  &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://ggplot2.tidyverse.org/reference/labs.html&#39;&gt;labs&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;y &lt;span class=&#39;op&#39;&gt;=&lt;/span&gt; &lt;span class=&#39;st&#39;&gt;&#39;Cumulative Cases Per 100K&#39;&lt;/span&gt;,&lt;/span&gt;
+&lt;span&gt;       title &lt;span class=&#39;op&#39;&gt;=&lt;/span&gt; &lt;span class=&#39;st&#39;&gt;&#39;AI/AN See Similar Covid Rates in Apache County, AZ&#39;&lt;/span&gt;,&lt;/span&gt;
+&lt;span&gt;       color &lt;span class=&#39;op&#39;&gt;=&lt;/span&gt; &lt;span class=&#39;st&#39;&gt;&#39;Race&#39;&lt;/span&gt;,&lt;/span&gt;
+&lt;span&gt;       x &lt;span class=&#39;op&#39;&gt;=&lt;/span&gt; &lt;span class=&#39;st&#39;&gt;&#39;&#39;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;+&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;  &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://ggplot2.tidyverse.org/reference/scale_colour_discrete.html&#39;&gt;scale_color_discrete&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;labels&lt;span class=&#39;op&#39;&gt;=&lt;/span&gt;&lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://rdrr.io/r/base/c.html&#39;&gt;c&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;st&#39;&gt;&#39;AI/AN&#39;&lt;/span&gt;, &lt;span class=&#39;st&#39;&gt;&#39;White&#39;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;img src=&quot;index_files/figure-html5/unnamed-chunk-11-1.png&quot; width=&quot;624&quot; /&gt;&lt;div class=&quot;sourceCode&quot;&gt;&lt;pre class=&quot;sourceCode r&quot;&gt;&lt;code class=&quot;sourceCode r&quot;&gt;&lt;span&gt;&lt;span class=&#39;va&#39;&gt;AZ_covid_w_dems&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;&lt;a href=&#39;https://magrittr.tidyverse.org/reference/pipe.html&#39;&gt;%&amp;gt;%&lt;/a&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;  &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://dplyr.tidyverse.org/reference/filter.html&#39;&gt;filter&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;va&#39;&gt;county&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;==&lt;/span&gt; &lt;span class=&#39;st&#39;&gt;&#39;Navajo County&#39;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;|&amp;gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;  &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://dplyr.tidyverse.org/reference/filter.html&#39;&gt;filter&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;va&#39;&gt;race&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;&lt;a href=&#39;https://rdrr.io/r/base/match.html&#39;&gt;%in%&lt;/a&gt;&lt;/span&gt; &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://rdrr.io/r/base/c.html&#39;&gt;c&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;st&#39;&gt;&quot;american_indian_alaska_native&quot;&lt;/span&gt;, &lt;span class=&#39;st&#39;&gt;&quot;white&quot;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;|&amp;gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;  &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://ggplot2.tidyverse.org/reference/ggplot.html&#39;&gt;ggplot&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;+&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;  &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://ggplot2.tidyverse.org/reference/geom_path.html&#39;&gt;geom_line&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://ggplot2.tidyverse.org/reference/aes.html&#39;&gt;aes&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;x &lt;span class=&#39;op&#39;&gt;=&lt;/span&gt; &lt;span class=&#39;va&#39;&gt;dates&lt;/span&gt;, y &lt;span class=&#39;op&#39;&gt;=&lt;/span&gt; &lt;span class=&#39;va&#39;&gt;cumul_cases_pc&lt;/span&gt;, color &lt;span class=&#39;op&#39;&gt;=&lt;/span&gt; &lt;span class=&#39;va&#39;&gt;race&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;+&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;  &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://ggplot2.tidyverse.org/reference/ggtheme.html&#39;&gt;theme_minimal&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;+&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;  &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://ggplot2.tidyverse.org/reference/labs.html&#39;&gt;labs&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;y &lt;span class=&#39;op&#39;&gt;=&lt;/span&gt; &lt;span class=&#39;st&#39;&gt;&#39;Cumulative Cases Per 100K&#39;&lt;/span&gt;,&lt;/span&gt;
+&lt;span&gt;       title &lt;span class=&#39;op&#39;&gt;=&lt;/span&gt; &lt;span class=&#39;st&#39;&gt;&#39;AI/AN See Higher Covid Rates in Navajo County, AZ&#39;&lt;/span&gt;,&lt;/span&gt;
+&lt;span&gt;       color &lt;span class=&#39;op&#39;&gt;=&lt;/span&gt; &lt;span class=&#39;st&#39;&gt;&#39;Race&#39;&lt;/span&gt;,&lt;/span&gt;
+&lt;span&gt;       x &lt;span class=&#39;op&#39;&gt;=&lt;/span&gt; &lt;span class=&#39;st&#39;&gt;&#39;&#39;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;+&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;  &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://ggplot2.tidyverse.org/reference/scale_colour_discrete.html&#39;&gt;scale_color_discrete&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;labels&lt;span class=&#39;op&#39;&gt;=&lt;/span&gt;&lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://rdrr.io/r/base/c.html&#39;&gt;c&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;st&#39;&gt;&#39;AI/AN&#39;&lt;/span&gt;, &lt;span class=&#39;st&#39;&gt;&#39;White&#39;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;img src=&quot;index_files/figure-html5/unnamed-chunk-11-2.png&quot; width=&quot;624&quot; /&gt;&lt;div class=&quot;sourceCode&quot;&gt;&lt;pre class=&quot;sourceCode r&quot;&gt;&lt;code class=&quot;sourceCode r&quot;&gt;&lt;span&gt;&lt;span class=&#39;va&#39;&gt;AZ_covid_w_dems&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;&lt;a href=&#39;https://magrittr.tidyverse.org/reference/pipe.html&#39;&gt;%&amp;gt;%&lt;/a&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;  &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://dplyr.tidyverse.org/reference/filter.html&#39;&gt;filter&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;va&#39;&gt;county&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;==&lt;/span&gt; &lt;span class=&#39;st&#39;&gt;&#39;Yavapai County&#39;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;|&amp;gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;  &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://dplyr.tidyverse.org/reference/filter.html&#39;&gt;filter&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;va&#39;&gt;race&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;&lt;a href=&#39;https://rdrr.io/r/base/match.html&#39;&gt;%in%&lt;/a&gt;&lt;/span&gt; &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://rdrr.io/r/base/c.html&#39;&gt;c&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;st&#39;&gt;&quot;american_indian_alaska_native&quot;&lt;/span&gt;, &lt;span class=&#39;st&#39;&gt;&quot;white&quot;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;|&amp;gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;  &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://ggplot2.tidyverse.org/reference/ggplot.html&#39;&gt;ggplot&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;+&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;  &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://ggplot2.tidyverse.org/reference/geom_path.html&#39;&gt;geom_line&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://ggplot2.tidyverse.org/reference/aes.html&#39;&gt;aes&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;x &lt;span class=&#39;op&#39;&gt;=&lt;/span&gt; &lt;span class=&#39;va&#39;&gt;dates&lt;/span&gt;, y &lt;span class=&#39;op&#39;&gt;=&lt;/span&gt; &lt;span class=&#39;va&#39;&gt;cumul_cases_pc&lt;/span&gt;, color &lt;span class=&#39;op&#39;&gt;=&lt;/span&gt; &lt;span class=&#39;va&#39;&gt;race&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;+&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;  &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://ggplot2.tidyverse.org/reference/ggtheme.html&#39;&gt;theme_minimal&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;+&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;  &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://ggplot2.tidyverse.org/reference/labs.html&#39;&gt;labs&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;y &lt;span class=&#39;op&#39;&gt;=&lt;/span&gt; &lt;span class=&#39;st&#39;&gt;&#39;Cumulative Cases Per 100K&#39;&lt;/span&gt;,&lt;/span&gt;
+&lt;span&gt;       title &lt;span class=&#39;op&#39;&gt;=&lt;/span&gt; &lt;span class=&#39;st&#39;&gt;&#39;AI/AN See Higher Covid Rates in Yavapai County, AZ&#39;&lt;/span&gt;,&lt;/span&gt;
+&lt;span&gt;       color &lt;span class=&#39;op&#39;&gt;=&lt;/span&gt; &lt;span class=&#39;st&#39;&gt;&#39;Race&#39;&lt;/span&gt;,&lt;/span&gt;
+&lt;span&gt;       x &lt;span class=&#39;op&#39;&gt;=&lt;/span&gt; &lt;span class=&#39;st&#39;&gt;&#39;&#39;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt; &lt;span class=&#39;op&#39;&gt;+&lt;/span&gt;&lt;/span&gt;
+&lt;span&gt;  &lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://ggplot2.tidyverse.org/reference/scale_colour_discrete.html&#39;&gt;scale_color_discrete&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;labels&lt;span class=&#39;op&#39;&gt;=&lt;/span&gt;&lt;span class=&#39;fu&#39;&gt;&lt;a href=&#39;https://rdrr.io/r/base/c.html&#39;&gt;c&lt;/a&gt;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;(&lt;/span&gt;&lt;span class=&#39;st&#39;&gt;&#39;AI/AN&#39;&lt;/span&gt;, &lt;span class=&#39;st&#39;&gt;&#39;White&#39;&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt;&lt;span class=&#39;op&#39;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;img src=&quot;index_files/figure-html5/unnamed-chunk-11-3.png&quot; width=&quot;624&quot; /&gt;
+
+&lt;/div&gt;
+
+The final three charts are effectively “zooming in” and polished versions of early milestone work. These are the result of my work, showing the relationship of interest between white and AI/AN cases in the specific counties per day. 
+
+# Conclusion
+
+
+
+```{.r .distill-force-highlighting-css}</code></pre>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
